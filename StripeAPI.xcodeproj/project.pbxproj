@@ -10,6 +10,15 @@
 		126953041F80F3F5004F3373 /* StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126952FA1F80F3F5004F3373 /* StripeAPI.framework */; };
 		126953091F80F3F5004F3373 /* StripeAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126953081F80F3F5004F3373 /* StripeAPITests.swift */; };
 		1269530B1F80F3F5004F3373 /* StripeAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 126952FD1F80F3F5004F3373 /* StripeAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A7C1F80F70700D91D25 /* Customer.swift */; };
+		129F4A7F1F80F83D00D91D25 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A7E1F80F83D00D91D25 /* Order.swift */; };
+		129F4A811F80F88D00D91D25 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A801F80F88D00D91D25 /* API.swift */; };
+		129F4A841F80F9C200D91D25 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A831F80F9C200D91D25 /* Card.swift */; };
+		129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A851F80F9CF00D91D25 /* Charge.swift */; };
+		129F4A881F80F9E600D91D25 /* SKU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A871F80F9E600D91D25 /* SKU.swift */; };
+		129F4A8A1F80F9F600D91D25 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A891F80F9F600D91D25 /* Product.swift */; };
+		129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A8B1F80FA1A00D91D25 /* Outcome.swift */; };
+		129F4A8E1F80FA5A00D91D25 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A8D1F80FA5A00D91D25 /* List.swift */; };
 		E7F986CA1D4574D52C0F174B /* Pods_StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1BC6E9D7E078AAEF791006 /* Pods_StripeAPI.framework */; };
 		FA00A6AA1DB1E1D101F7D399 /* Pods_StripeAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB81E3C234053CC5332BBE /* Pods_StripeAPITests.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +40,15 @@
 		126953031F80F3F5004F3373 /* StripeAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StripeAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		126953081F80F3F5004F3373 /* StripeAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPITests.swift; sourceTree = "<group>"; };
 		1269530A1F80F3F5004F3373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		129F4A7C1F80F70700D91D25 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		129F4A7E1F80F83D00D91D25 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		129F4A801F80F88D00D91D25 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		129F4A831F80F9C200D91D25 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		129F4A851F80F9CF00D91D25 /* Charge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charge.swift; sourceTree = "<group>"; };
+		129F4A871F80F9E600D91D25 /* SKU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKU.swift; sourceTree = "<group>"; };
+		129F4A891F80F9F600D91D25 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		129F4A8B1F80FA1A00D91D25 /* Outcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
+		129F4A8D1F80FA5A00D91D25 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		52CB4785CA3D1116BA3A5D66 /* Pods-StripeAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StripeAPITests/Pods-StripeAPITests.release.xcconfig"; sourceTree = "<group>"; };
 		8BC0ED3F9CD687E961BDA701 /* Pods-StripeAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StripeAPI/Pods-StripeAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		94CB81E3C234053CC5332BBE /* Pods_StripeAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StripeAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				126952FD1F80F3F5004F3373 /* StripeAPI.h */,
+				129F4A801F80F88D00D91D25 /* API.swift */,
+				129F4A821F80F92B00D91D25 /* Models */,
 				126952FE1F80F3F5004F3373 /* Info.plist */,
 			);
 			path = StripeAPI;
@@ -105,6 +125,21 @@
 				1269530A1F80F3F5004F3373 /* Info.plist */,
 			);
 			path = StripeAPITests;
+			sourceTree = "<group>";
+		};
+		129F4A821F80F92B00D91D25 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				129F4A7C1F80F70700D91D25 /* Customer.swift */,
+				129F4A8D1F80FA5A00D91D25 /* List.swift */,
+				129F4A8B1F80FA1A00D91D25 /* Outcome.swift */,
+				129F4A871F80F9E600D91D25 /* SKU.swift */,
+				129F4A891F80F9F600D91D25 /* Product.swift */,
+				129F4A831F80F9C200D91D25 /* Card.swift */,
+				129F4A851F80F9CF00D91D25 /* Charge.swift */,
+				129F4A7E1F80F83D00D91D25 /* Order.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A5690189F0AD8E4656903D09 /* Pods */ = {
@@ -185,6 +220,7 @@
 				TargetAttributes = {
 					126952F91F80F3F5004F3373 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					126953021F80F3F5004F3373 = {
@@ -324,6 +360,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				129F4A7F1F80F83D00D91D25 /* Order.swift in Sources */,
+				129F4A811F80F88D00D91D25 /* API.swift in Sources */,
+				129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */,
+				129F4A881F80F9E600D91D25 /* SKU.swift in Sources */,
+				129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */,
+				129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */,
+				129F4A841F80F9C200D91D25 /* Card.swift in Sources */,
+				129F4A8A1F80F9F600D91D25 /* Product.swift in Sources */,
+				129F4A8E1F80FA5A00D91D25 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +508,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8BC0ED3F9CD687E961BDA701 /* Pods-StripeAPI.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -476,6 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = inc.stamp.StripeAPI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -485,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DFB05B9FF784D72015FBF347 /* Pods-StripeAPI.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -507,6 +555,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DEEC3C44FDE996F976EFE7FA /* Pods-StripeAPITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88ACA86N96;
 				INFOPLIST_FILE = StripeAPITests/Info.plist;
@@ -522,6 +571,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 52CB4785CA3D1116BA3A5D66 /* Pods-StripeAPITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 88ACA86N96;
 				INFOPLIST_FILE = StripeAPITests/Info.plist;
