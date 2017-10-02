@@ -19,6 +19,8 @@
 		129F4A8A1F80F9F600D91D25 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A891F80F9F600D91D25 /* Product.swift */; };
 		129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A8B1F80FA1A00D91D25 /* Outcome.swift */; };
 		129F4A8E1F80FA5A00D91D25 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A8D1F80FA5A00D91D25 /* List.swift */; };
+		129F4A901F8103EE00D91D25 /* StripeAPIDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A8F1F8103EE00D91D25 /* StripeAPIDecoder.swift */; };
+		12C5BF5D1F81084300EE1F69 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5BF5C1F81084300EE1F69 /* Source.swift */; };
 		E7F986CA1D4574D52C0F174B /* Pods_StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1BC6E9D7E078AAEF791006 /* Pods_StripeAPI.framework */; };
 		FA00A6AA1DB1E1D101F7D399 /* Pods_StripeAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB81E3C234053CC5332BBE /* Pods_StripeAPITests.framework */; };
 /* End PBXBuildFile section */
@@ -49,6 +51,8 @@
 		129F4A891F80F9F600D91D25 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		129F4A8B1F80FA1A00D91D25 /* Outcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
 		129F4A8D1F80FA5A00D91D25 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		129F4A8F1F8103EE00D91D25 /* StripeAPIDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPIDecoder.swift; sourceTree = "<group>"; };
+		12C5BF5C1F81084300EE1F69 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		52CB4785CA3D1116BA3A5D66 /* Pods-StripeAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StripeAPITests/Pods-StripeAPITests.release.xcconfig"; sourceTree = "<group>"; };
 		8BC0ED3F9CD687E961BDA701 /* Pods-StripeAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StripeAPI/Pods-StripeAPI.debug.xcconfig"; sourceTree = "<group>"; };
 		94CB81E3C234053CC5332BBE /* Pods_StripeAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StripeAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +116,7 @@
 			children = (
 				126952FD1F80F3F5004F3373 /* StripeAPI.h */,
 				129F4A801F80F88D00D91D25 /* API.swift */,
+				129F4A8F1F8103EE00D91D25 /* StripeAPIDecoder.swift */,
 				129F4A821F80F92B00D91D25 /* Models */,
 				126952FE1F80F3F5004F3373 /* Info.plist */,
 			);
@@ -131,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				129F4A7C1F80F70700D91D25 /* Customer.swift */,
+				12C5BF5C1F81084300EE1F69 /* Source.swift */,
 				129F4A8D1F80FA5A00D91D25 /* List.swift */,
 				129F4A8B1F80FA1A00D91D25 /* Outcome.swift */,
 				129F4A871F80F9E600D91D25 /* SKU.swift */,
@@ -364,10 +370,12 @@
 				129F4A811F80F88D00D91D25 /* API.swift in Sources */,
 				129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */,
 				129F4A881F80F9E600D91D25 /* SKU.swift in Sources */,
+				12C5BF5D1F81084300EE1F69 /* Source.swift in Sources */,
 				129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */,
 				129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */,
 				129F4A841F80F9C200D91D25 /* Card.swift in Sources */,
 				129F4A8A1F80F9F600D91D25 /* Product.swift in Sources */,
+				129F4A901F8103EE00D91D25 /* StripeAPIDecoder.swift in Sources */,
 				129F4A8E1F80FA5A00D91D25 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

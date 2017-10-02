@@ -37,7 +37,21 @@ extension StripeAPI {
         return FormURLEncodedBodyParameters(formObject: parameters)
     }
 
+    var dataParser: DataParser {
+        return DecodableDataParser()
+    }
 }
+
+final class DecodableDataParser: DataParser {
+    var contentType: String? {
+        return "application/json"
+    }
+
+    func parse(data: Data) throws -> Any {
+        return data
+    }
+}
+
 /**
  Create a customer
  */
@@ -128,7 +142,7 @@ struct GetCustomer: StripeAPI {
 
 struct UpdateCustomerSource: StripeAPI {
 
-    typealias Response = STP.Card
+    typealias Response = Card
 
     let customer: String
 
@@ -152,13 +166,12 @@ struct UpdateCustomerSource: StripeAPI {
         ]
     }
 
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> STP.Card {
-        guard let response: STP.Card = STP.Card(object as! [AnyHashable : Any]) else {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+        guard let data: Data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
-        return response
+        return try JSONDecoder().decode(Response.self, from: data)
     }
-
 }
 
 /**
@@ -189,13 +202,12 @@ struct UpdateCustomer: StripeAPI {
         return self.parames
     }
 
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Customer {
-        guard let response: Customer = Customer(object as! [AnyHashable : Any]) else {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+        guard let data: Data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
-        return response
+        return try JSONDecoder().decode(Response.self, from: data)
     }
-
 }
 
 /**
@@ -240,11 +252,11 @@ struct CreateCharge: StripeAPI {
         return parameters
     }
 
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Charge {
-        guard let response: Charge = Charge(object as! [AnyHashable : Any]) else {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+        guard let data: Data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
-        return response
+        return try JSONDecoder().decode(Response.self, from: data)
     }
 }
 
@@ -271,15 +283,16 @@ struct GetCard: StripeAPI {
         return "/customers/\(customer)/sources/\(card)"
     }
 
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Card {
-        guard let response: Card = Card(object as! [AnyHashable : Any]) else {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+        guard let data: Data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
-        return response
+        return try JSONDecoder().decode(Response.self, from: data)
     }
 }
 
 struct RetriveSKU: StripeAPI {
+
     typealias Response = SKU
 
     let skuID: String
@@ -297,10 +310,10 @@ struct RetriveSKU: StripeAPI {
     }
 
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
-        guard let json = object as? [AnyHashable: Any], let response = SKU(json) else {
+        guard let data: Data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
-        return response
+        return try JSONDecoder().decode(Response.self, from: data)
     }
 }
 
@@ -322,9 +335,9 @@ struct RetriveProduct: StripeAPI {
     }
 
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
-        guard let json = object as? [AnyHashable: Any], let response = Product(json) else {
+        guard let data: Data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
-        return response
+        return try JSONDecoder().decode(Response.self, from: data)
     }
 }
