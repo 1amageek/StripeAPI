@@ -10,7 +10,7 @@ import Foundation
 import APIKit
 import Stripe
 
-protocol StripeAPI: Request {
+public protocol StripeAPI: Request {
 
 }
 
@@ -42,6 +42,16 @@ extension StripeAPI {
     }
 }
 
+extension StripeAPIRequest {
+    var headerFields: [String : String] {
+        return ["authorization": "Basic \(encodedKey)"]
+    }
+}
+
+public enum StripeAPIError: Error {
+    case network
+}
+
 final class DecodableDataParser: DataParser {
     var contentType: String? {
         return "application/json"
@@ -50,6 +60,10 @@ final class DecodableDataParser: DataParser {
     func parse(data: Data) throws -> Any {
         return data
     }
+}
+
+public protocol StripeAPIRequest: StripeAPI {
+
 }
 
 /**
