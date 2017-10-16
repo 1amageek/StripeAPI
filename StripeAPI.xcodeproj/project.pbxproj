@@ -27,6 +27,8 @@
 		129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A8B1F80FA1A00D91D25 /* Outcome.swift */; };
 		129F4A8E1F80FA5A00D91D25 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A8D1F80FA5A00D91D25 /* List.swift */; };
 		129F4A901F8103EE00D91D25 /* StripeAPIDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A8F1F8103EE00D91D25 /* StripeAPIDecoder.swift */; };
+		129FE6F21F94FB0C002AC702 /* Discount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129FE6F11F94FB0C002AC702 /* Discount.swift */; };
+		129FE6F41F94FBE9002AC702 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129FE6F31F94FBE9002AC702 /* Coupon.swift */; };
 		12C5BF5D1F81084300EE1F69 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C5BF5C1F81084300EE1F69 /* Source.swift */; };
 		E7F986CA1D4574D52C0F174B /* Pods_StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1BC6E9D7E078AAEF791006 /* Pods_StripeAPI.framework */; };
 		FA00A6AA1DB1E1D101F7D399 /* Pods_StripeAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94CB81E3C234053CC5332BBE /* Pods_StripeAPITests.framework */; };
@@ -66,6 +68,8 @@
 		129F4A8B1F80FA1A00D91D25 /* Outcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
 		129F4A8D1F80FA5A00D91D25 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		129F4A8F1F8103EE00D91D25 /* StripeAPIDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPIDecoder.swift; sourceTree = "<group>"; };
+		129FE6F11F94FB0C002AC702 /* Discount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discount.swift; sourceTree = "<group>"; };
+		129FE6F31F94FBE9002AC702 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
 		12C5BF5C1F81084300EE1F69 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		52CB4785CA3D1116BA3A5D66 /* Pods-StripeAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StripeAPITests/Pods-StripeAPITests.release.xcconfig"; sourceTree = "<group>"; };
 		8BC0ED3F9CD687E961BDA701 /* Pods-StripeAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StripeAPI/Pods-StripeAPI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 			children = (
 				128CAE1A1F94847C00605189 /* Currency.swift */,
 				129F4A7C1F80F70700D91D25 /* Customer.swift */,
+				129FE6F11F94FB0C002AC702 /* Discount.swift */,
+				129FE6F31F94FBE9002AC702 /* Coupon.swift */,
 				12C5BF5C1F81084300EE1F69 /* Source.swift */,
 				129F4A8D1F80FA5A00D91D25 /* List.swift */,
 				129F4A8B1F80FA1A00D91D25 /* Outcome.swift */,
@@ -387,8 +393,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				129FE6F21F94FB0C002AC702 /* Discount.swift in Sources */,
 				129F4A7F1F80F83D00D91D25 /* Order.swift in Sources */,
 				129F4A811F80F88D00D91D25 /* StripeAPI.swift in Sources */,
+				129FE6F41F94FBE9002AC702 /* Coupon.swift in Sources */,
 				129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */,
 				128CAE191F9483E400605189 /* OrderItem.swift in Sources */,
 				129F4A881F80F9E600D91D25 /* SKU.swift in Sources */,

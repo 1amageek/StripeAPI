@@ -28,3 +28,22 @@ public protocol Updateable: APIProtocol {
 public protocol Deletable: APIProtocol {
 
 }
+
+
+public protocol ParamaterRequestable {
+    var parameters: [AnyHashable: Any] { get }
+}
+
+extension ParamaterRequestable {
+
+    public var parameters: [AnyHashable: Any] {
+        let mirror: Mirror = Mirror(reflecting: self)
+        return mirror.children.reduce([:]) { (result, child) -> [AnyHashable: Any] in
+            var result = result
+            if child.value != nil {
+                result[child.label!] = child.value
+            }
+            return result
+        }
+    }
+}

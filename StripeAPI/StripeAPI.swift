@@ -14,11 +14,11 @@ public protocol StripeAPI: Request { }
 
 extension StripeAPI {
 
-    var baseURL: URL {
+    public var baseURL: URL {
         return URL(string: "https://api.stripe.com/v1")!
     }
 
-    var headerFields: [String : String] {
+    public var headerFields: [String : String] {
         return ["authorization": "Basic \(encodedKey)"]
     }
 
@@ -32,14 +32,14 @@ extension StripeAPI {
         return data.base64EncodedString()
     }
 
-    var bodyParameters: BodyParameters? {
+    public var bodyParameters: BodyParameters? {
         guard let parameters = self.parameters as? [String: Any], !self.method.prefersQueryParameters else {
             return nil
         }
         return FormURLEncodedBodyParameters(formObject: parameters)
     }
 
-    var dataParser: DataParser {
+    public var dataParser: DataParser {
         return DecodableDataParser()
     }
 }
@@ -63,7 +63,7 @@ public protocol StripeAPIRequest: StripeAPI {
 }
 
 extension StripeAPI where Response: Decodable {
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+    public func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
         guard let data: Data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }

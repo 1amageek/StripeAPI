@@ -24,8 +24,6 @@ public struct Customer: Decodable {
         case livemode
     }
 
-
-
     let id: String
     let object: String
     let accountBalance: Int
@@ -43,19 +41,21 @@ public struct Customer: Decodable {
 
 extension Customer {
 
+    public struct Parameters: ParamaterRequestable {
+        let accountBalance: Int?
+        let businessVatID: String?
+        let coupon: String?
+        let defaultSource: String?
+        let description: String?
+        let email: String?
+        let metadata: [AnyHashable: Any]?
+        let shipping: [AnyHashable: Any]?
+        let source: [AnyHashable: Any]?
+    }
+
     public enum Request: StripeAPI {
 
-        case create(
-            accountBalance: Int?,
-            businessVatID: String?,
-            coupon: String?,
-            defaultSource: String?,
-            description: String?,
-            email: String?,
-            metadata: [AnyHashable: Any]?,
-            shipping: [AnyHashable: Any]?,
-            source: [AnyHashable: Any]?
-        )
+        case create(Parameters)
         case retrieve
         case delete
 
@@ -63,9 +63,9 @@ extension Customer {
 
         public var method: HTTPMethod {
             switch self {
+            case .create: return .post
             case .retrieve: return .get
             case .delete: return .delete
-            default: return .post
             }
         }
 
@@ -74,43 +74,10 @@ extension Customer {
         }
 
         public var queryParameters: [String : Any]? {
-
             switch self {
-            case .create(
-                accountBalance: let accountBalance,
-                businessVatID: let businessVatID,
-                coupon: let coupon,
-                defaultSource: let defaultSource,
-                description: let description,
-                email: let email,
-                metadata: let metadata,
-                shipping: let shipping,
-                source: let source)
-
-                var parameters: [String: Any] = [:]
-
-                if let accountBalance: Int = accountBalance {
-                    parameters[""]
-                }
-
-                if let description: String = description {
-                    parameters["description"] = description
-                }
-
-                if let source: [AnyHashable: Any] = source {
-                    parameters["source"] = source
-                }
-
-                if let email: String = email {
-                    parameters["email"] = email
-                }
-
-                return parameters
-
+            case .create(let parameters): return parameters.parameters as? [String : Any]
             default: return nil
             }
-
-
         }
     }
 }
