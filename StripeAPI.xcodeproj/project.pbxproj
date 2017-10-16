@@ -11,6 +11,8 @@
 		126953041F80F3F5004F3373 /* StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126952FA1F80F3F5004F3373 /* StripeAPI.framework */; };
 		126953091F80F3F5004F3373 /* StripeAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126953081F80F3F5004F3373 /* StripeAPITests.swift */; };
 		1269530B1F80F3F5004F3373 /* StripeAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 126952FD1F80F3F5004F3373 /* StripeAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		128CAE191F9483E400605189 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE181F9483E400605189 /* OrderItem.swift */; };
+		128CAE1B1F94847C00605189 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE1A1F94847C00605189 /* Currency.swift */; };
 		129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A7C1F80F70700D91D25 /* Customer.swift */; };
 		129F4A7F1F80F83D00D91D25 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A7E1F80F83D00D91D25 /* Order.swift */; };
 		129F4A811F80F88D00D91D25 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A801F80F88D00D91D25 /* API.swift */; };
@@ -44,6 +46,8 @@
 		126953031F80F3F5004F3373 /* StripeAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StripeAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		126953081F80F3F5004F3373 /* StripeAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPITests.swift; sourceTree = "<group>"; };
 		1269530A1F80F3F5004F3373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		128CAE181F9483E400605189 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		128CAE1A1F94847C00605189 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		129F4A7C1F80F70700D91D25 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		129F4A7E1F80F83D00D91D25 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		129F4A801F80F88D00D91D25 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 		129F4A821F80F92B00D91D25 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				128CAE1A1F94847C00605189 /* Currency.swift */,
 				129F4A7C1F80F70700D91D25 /* Customer.swift */,
 				12C5BF5C1F81084300EE1F69 /* Source.swift */,
 				129F4A8D1F80FA5A00D91D25 /* List.swift */,
@@ -147,6 +152,7 @@
 				129F4A831F80F9C200D91D25 /* Card.swift */,
 				129F4A851F80F9CF00D91D25 /* Charge.swift */,
 				129F4A7E1F80F83D00D91D25 /* Order.swift */,
+				128CAE181F9483E400605189 /* OrderItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 				1213FBA01F839E8300643C63 /* Creatable.swift in Sources */,
 				129F4A811F80F88D00D91D25 /* API.swift in Sources */,
 				129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */,
+				128CAE191F9483E400605189 /* OrderItem.swift in Sources */,
 				129F4A881F80F9E600D91D25 /* SKU.swift in Sources */,
 				12C5BF5D1F81084300EE1F69 /* Source.swift in Sources */,
 				129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */,
@@ -380,6 +387,7 @@
 				129F4A841F80F9C200D91D25 /* Card.swift in Sources */,
 				129F4A8A1F80F9F600D91D25 /* Product.swift in Sources */,
 				129F4A901F8103EE00D91D25 /* StripeAPIDecoder.swift in Sources */,
+				128CAE1B1F94847C00605189 /* Currency.swift in Sources */,
 				129F4A8E1F80FA5A00D91D25 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
