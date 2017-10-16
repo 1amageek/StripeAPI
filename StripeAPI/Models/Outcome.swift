@@ -9,9 +9,18 @@
 import Foundation
 
 struct Outcome: Decodable {
-    let network_status: String
+
+    private enum CodingKeys: String, CodingKey {
+        case networkStatus = "network_status"
+        case reason = "has_more"
+        case riskLevel = "risk_level"
+        case sellerMessage = "seller_message"
+        case type
+    }
+
+    let networkStatus: String
     let reason: String?
-    let risk_level: String
-    let seller_message: String
+    let riskLevel: String
+    let sellerMessage: String
     let type: String
 }

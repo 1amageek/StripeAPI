@@ -9,9 +9,18 @@
 import Foundation
 
 struct List<T: Decodable>: Decodable {
+
+    private enum CodingKeys: String, CodingKey {
+        case object
+        case hasMore = "has_more"
+        case totalCount = "total_count"
+        case url
+        case data
+    }
+
     let object: String
     let data: [T]
-    let has_more: Bool
-    let total_count: Int
+    let hasMore: Bool
+    let totalCount: Int
     let url: String
 }

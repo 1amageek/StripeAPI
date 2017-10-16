@@ -10,6 +10,14 @@ import Foundation
 
 // https://www.iso.org/iso-4217-currency-codes.html
 // https://stripe.com/docs/currencies
+/**
+ # Supported presentment currencies
+ Any Stripe user can process charges in the following list of currencies with these exceptions:
+ - Currencies marked with * are not supported by American Express
+ - Most alternative payment methods can only be used with a single currency
+ - Brazilian Stripe accounts (currently in Preview) can only charge in Brazilian Real
+ - Mexican Stripe accounts (currently in Preview) can only charge in Mexican Peso
+ */
 public enum Currency: String {
     
     case AFN = "AFN" // Afghan Afghani, AFN*
@@ -148,5 +156,4 @@ public enum Currency: String {
     case XOF = "XOF" // West African Cfa Franc, XOF*
     case YER = "YER" // Yemeni Rial, YER
     case ZMW = "ZMW" // Zambian Kwacha, ZMW
-    
 }
