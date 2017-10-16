@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1213FBA01F839E8300643C63 /* Creatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1213FB9F1F839E8300643C63 /* Creatable.swift */; };
 		126953041F80F3F5004F3373 /* StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126952FA1F80F3F5004F3373 /* StripeAPI.framework */; };
 		126953091F80F3F5004F3373 /* StripeAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126953081F80F3F5004F3373 /* StripeAPITests.swift */; };
 		1269530B1F80F3F5004F3373 /* StripeAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 126952FD1F80F3F5004F3373 /* StripeAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,9 +16,10 @@
 		128CAE1F1F948F9000605189 /* PackageDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE1E1F948F9000605189 /* PackageDimensions.swift */; };
 		128CAE211F94915E00605189 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE201F94915E00605189 /* TestConfiguration.swift */; };
 		128CAE231F94917600605189 /* TestConfiguration_sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE221F94917600605189 /* TestConfiguration_sample.swift */; };
+		128CAE251F94994E00605189 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE241F94994E00605189 /* APIProtocol.swift */; };
 		129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A7C1F80F70700D91D25 /* Customer.swift */; };
 		129F4A7F1F80F83D00D91D25 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A7E1F80F83D00D91D25 /* Order.swift */; };
-		129F4A811F80F88D00D91D25 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A801F80F88D00D91D25 /* API.swift */; };
+		129F4A811F80F88D00D91D25 /* StripeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A801F80F88D00D91D25 /* StripeAPI.swift */; };
 		129F4A841F80F9C200D91D25 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A831F80F9C200D91D25 /* Card.swift */; };
 		129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A851F80F9CF00D91D25 /* Charge.swift */; };
 		129F4A881F80F9E600D91D25 /* SKU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A871F80F9E600D91D25 /* SKU.swift */; };
@@ -43,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1213FB9F1F839E8300643C63 /* Creatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creatable.swift; sourceTree = "<group>"; };
 		126952FA1F80F3F5004F3373 /* StripeAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StripeAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		126952FD1F80F3F5004F3373 /* StripeAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripeAPI.h; sourceTree = "<group>"; };
 		126952FE1F80F3F5004F3373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,9 +55,10 @@
 		128CAE1E1F948F9000605189 /* PackageDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageDimensions.swift; sourceTree = "<group>"; };
 		128CAE201F94915E00605189 /* TestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		128CAE221F94917600605189 /* TestConfiguration_sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfiguration_sample.swift; sourceTree = "<group>"; };
+		128CAE241F94994E00605189 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		129F4A7C1F80F70700D91D25 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		129F4A7E1F80F83D00D91D25 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
-		129F4A801F80F88D00D91D25 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		129F4A801F80F88D00D91D25 /* StripeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAPI.swift; sourceTree = "<group>"; };
 		129F4A831F80F9C200D91D25 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		129F4A851F80F9CF00D91D25 /* Charge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charge.swift; sourceTree = "<group>"; };
 		129F4A871F80F9E600D91D25 /* SKU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKU.swift; sourceTree = "<group>"; };
@@ -129,9 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				126952FD1F80F3F5004F3373 /* StripeAPI.h */,
-				129F4A801F80F88D00D91D25 /* API.swift */,
+				129F4A801F80F88D00D91D25 /* StripeAPI.swift */,
 				129F4A8F1F8103EE00D91D25 /* StripeAPIDecoder.swift */,
-				1213FB9F1F839E8300643C63 /* Creatable.swift */,
+				128CAE241F94994E00605189 /* APIProtocol.swift */,
 				129F4A821F80F92B00D91D25 /* Models */,
 				126952FE1F80F3F5004F3373 /* Info.plist */,
 			);
@@ -388,8 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				129F4A7F1F80F83D00D91D25 /* Order.swift in Sources */,
-				1213FBA01F839E8300643C63 /* Creatable.swift in Sources */,
-				129F4A811F80F88D00D91D25 /* API.swift in Sources */,
+				129F4A811F80F88D00D91D25 /* StripeAPI.swift in Sources */,
 				129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */,
 				128CAE191F9483E400605189 /* OrderItem.swift in Sources */,
 				129F4A881F80F9E600D91D25 /* SKU.swift in Sources */,
@@ -397,6 +396,7 @@
 				128CAE1F1F948F9000605189 /* PackageDimensions.swift in Sources */,
 				129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */,
 				129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */,
+				128CAE251F94994E00605189 /* APIProtocol.swift in Sources */,
 				129F4A841F80F9C200D91D25 /* Card.swift in Sources */,
 				129F4A8A1F80F9F600D91D25 /* Product.swift in Sources */,
 				129F4A901F8103EE00D91D25 /* StripeAPIDecoder.swift in Sources */,

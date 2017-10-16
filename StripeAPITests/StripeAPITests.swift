@@ -20,7 +20,7 @@ class StripeAPITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testCustomer() {
         
     }
     

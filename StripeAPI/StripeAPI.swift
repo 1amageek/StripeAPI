@@ -10,9 +10,7 @@ import Foundation
 import APIKit
 import Stripe
 
-public protocol StripeAPI: Request {
-
-}
+public protocol StripeAPI: Request { }
 
 extension StripeAPI {
 
@@ -20,13 +18,17 @@ extension StripeAPI {
         return URL(string: "https://api.stripe.com/v1")!
     }
 
+    var headerFields: [String : String] {
+        return ["authorization": "Basic \(encodedKey)"]
+    }
+
     // Stripe Secret key
-    var key: String {
+    var secretKey: String {
         return ""
     }
 
     var encodedKey: String {
-        let data: Data = self.key.data(using: String.Encoding.utf8)!
+        let data: Data = self.secretKey.data(using: String.Encoding.utf8)!
         return data.base64EncodedString()
     }
 
@@ -39,12 +41,6 @@ extension StripeAPI {
 
     var dataParser: DataParser {
         return DecodableDataParser()
-    }
-}
-
-extension StripeAPIRequest {
-    var headerFields: [String : String] {
-        return ["authorization": "Basic \(encodedKey)"]
     }
 }
 
@@ -64,6 +60,18 @@ final class DecodableDataParser: DataParser {
 
 public protocol StripeAPIRequest: StripeAPI {
 
+}
+
+extension StripeAPI where Response: Decodable {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+        guard let data: Data = object as? Data else {
+            throw ResponseError.unexpectedObject(object)
+        }
+        if let string = String(data: data, encoding: .utf8) {
+            print("response: \(string)")
+        }
+        return try JSONDecoder().decode(Response.self, from: data)
+    }
 }
 
 /**
