@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct Source: Codable {
-    let amount: Double?
-    let currency: String?
-    let flow: String?
+public struct Source: Codable {
+    public let amount: Double?
+    public let currency: Currency?
+    public let flow: String?
 }

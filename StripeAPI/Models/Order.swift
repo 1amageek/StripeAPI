@@ -8,23 +8,23 @@
 
 import Foundation
 
-struct Order: Codable {
+public struct Order: Codable {
 
-    let id: String
-    let object: String
-    let amount: Int
-    let amount_returned: Int?
+    public let id: String
+    public let object: String
+    public let amount: Int
+    public let amount_returned: Int?
 //    let application: null
 //    let application_fee: null
-    let charge: Charge
-    let created: TimeInterval
-    let currency: String
-    let customer: Customer
-    let email: String?
+    public let charge: Charge
+    public let created: TimeInterval
+    public let currency: String
+    public let customer: Customer
+    public let email: String?
 //    let items: [Any]
-    let livemode: Bool
-    let selected_shipping_method: String
-    let status: String
-    let updated: TimeInterval
+    public let livemode: Bool
+    public let selected_shipping_method: String
+    public let status: String
+    public let updated: TimeInterval
 
 }

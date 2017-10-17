@@ -8,30 +8,30 @@
 
 import Foundation
 
-struct Card: Codable {
+public struct Card: Codable {
 
-    let id: String
-    let object: String
-    let address_city: String?
-    let address_country: String?
-    let address_line1: String?
-    let address_line1_check: String?
-    let address_line2: String?
-    let address_state: String?
-    let address_zip: String?
-    let address_zip_check: String?
-    let brand: String
-    let country: String
-    let customer: String
-    let cvc_check: String?
-    let dynamic_last4: String?
-    let exp_month: Int
-    let exp_year: Int
-    let fingerprint: String?
-    let funding: String
-    let last4: String
-//    let metadata: [AnyHashable: Any]
-    let name: String?
-    let tokenization_method: String?
+    public let id: String
+    public let object: String
+    public let address_city: String?
+    public let address_country: String?
+    public let address_line1: String?
+    public let address_line1_check: String?
+    public let address_line2: String?
+    public let address_state: String?
+    public let address_zip: String?
+    public let address_zip_check: String?
+    public let brand: String
+    public let country: String
+    public let customer: String
+    public let cvc_check: String?
+    public let dynamic_last4: String?
+    public let exp_month: Int
+    public let exp_year: Int
+    public let fingerprint: String?
+    public let funding: String
+    public let last4: String
+    public let metadata: [String: String]
+    public let name: String?
+    public let tokenization_method: String?
 
 }

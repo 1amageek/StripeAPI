@@ -10,10 +10,10 @@ import Foundation
 
 public struct Discount: Codable {
 
-    let object: String
-    let coupon: Coupon?
-    let customer: String?
-    let end: TimeInterval
-    let start: TimeInterval
-    let subscription: String?
+    public let object: String
+    public let coupon: Coupon?
+    public let customer: String?
+    public let end: TimeInterval
+    public let start: TimeInterval
+    public let subscription: String?
 }

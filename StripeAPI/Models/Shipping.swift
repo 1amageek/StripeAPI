@@ -10,7 +10,7 @@ import Foundation
 
 public struct Shipping: Codable {
 
-    let address: Address
-    let name: String
-    let phone: String
+    public let address: Address
+    public let name: String
+    public let phone: String
 }

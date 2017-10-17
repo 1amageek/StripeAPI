@@ -19,10 +19,10 @@ public struct Address: Codable {
         case state
     }
 
-    let line1: String
-    let city: String?
-    let country: String?
-    let line2: String?
-    let postalCode: String?
-    let state: String?
+    public let line1: String
+    public let city: String?
+    public let country: String?
+    public let line2: String?
+    public let postalCode: String?
+    public let state: String?
 }

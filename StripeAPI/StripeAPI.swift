@@ -9,8 +9,11 @@
 import Foundation
 import APIKit
 import Stripe
+import Result
 
-public protocol StripeAPI: Request { }
+public protocol StripeAPI: Request {
+    var secretKey: String { get }
+}
 
 extension StripeAPI {
 
@@ -23,8 +26,8 @@ extension StripeAPI {
     }
 
     // Stripe Secret key
-    var secretKey: String {
-        return ""
+    public var secretKey: String {
+        return Configuration.shared.secretKey
     }
 
     var encodedKey: String {
@@ -42,6 +45,28 @@ extension StripeAPI {
     public var dataParser: DataParser {
         return DecodableDataParser()
     }
+
+    @discardableResult
+    public func send(_ block: @escaping (Result<Self.Response, SessionTaskError>) -> Void) -> SessionTask? {
+        return Session.send(self, callbackQueue: .main, handler: block)
+    }
+}
+
+final class StripeAPIEncoder: BodyParameters {
+
+    var contentType: String {
+        return "application/json"
+    }
+
+    let from: Encodable
+
+    init(from: Encodable) {
+        self.from = from
+    }
+
+    func buildEntity() throws -> RequestBodyEntity {
+        return .data(try JSONEncoder().encode(""))
+    }
 }
 
 public enum StripeAPIError: Error {
@@ -56,10 +81,6 @@ final class DecodableDataParser: DataParser {
     func parse(data: Data) throws -> Any {
         return data
     }
-}
-
-public protocol StripeAPIRequest: StripeAPI {
-
 }
 
 extension StripeAPI where Response: Decodable {

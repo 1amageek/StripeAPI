@@ -8,24 +8,24 @@
 
 import Foundation
 
-struct Product: Codable {
-    let id: String
-    let object: String
-    let active: Bool
-    let attributes: [String]
-    let caption: String
-    let created: TimeInterval
+public struct Product: Codable {
+    public let id: String
+    public let object: String
+    public let active: Bool
+    public let attributes: [String]
+    public let caption: String
+    public let created: TimeInterval
     //        let deactivate_on: [?]
-    let description: String?
-    let images: [URL]
-    let livemode: Bool
-    let metadata: [String: String]
-    let name: String
-    let packageDimensions: PackageDimensions
-    let shippable: Bool
-    let skus: List<SKU>
-    let updated: TimeInterval
-    let url: String?
+    public let description: String?
+    public let images: [URL]
+    public let livemode: Bool
+    public let metadata: [String: String]
+    public let name: String
+    public let packageDimensions: PackageDimensions
+    public let shippable: Bool
+    public let skus: List<SKU>
+    public let updated: TimeInterval
+    public let url: String?
 
     private enum CodingKeys: String, CodingKey {
         case id

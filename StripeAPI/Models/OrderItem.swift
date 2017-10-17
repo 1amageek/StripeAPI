@@ -8,14 +8,13 @@
 
 import Foundation
 
-struct OrderItem: Decodable {
+public struct OrderItem: Decodable {
 
-    let object: String
-    let amount: Int
-    let currency: String
-    let description: String
-    let parent: String
-    let quantity: Int?
-    let type: String
-
+    public let object: String
+    public let amount: Int
+    public let currency: String
+    public let description: String
+    public let parent: String
+    public let quantity: Int?
+    public let type: String
 }

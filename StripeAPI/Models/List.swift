@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct List<T: Codable>: Codable {
+public struct List<T: Codable>: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case object
@@ -18,9 +18,9 @@ struct List<T: Codable>: Codable {
         case data
     }
 
-    let object: String
-    let data: [T]
-    let hasMore: Bool
-    let totalCount: Int
-    let url: String
+    public let object: String
+    public let data: [T]
+    public let hasMore: Bool
+    public let totalCount: Int
+    public let url: String
 }

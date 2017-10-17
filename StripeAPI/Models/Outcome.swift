@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Outcome: Codable {
+public struct Outcome: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case networkStatus = "network_status"
@@ -18,9 +18,9 @@ struct Outcome: Codable {
         case type
     }
 
-    let networkStatus: String
-    let reason: String?
-    let riskLevel: String
-    let sellerMessage: String
-    let type: String
+    public let networkStatus: String
+    public let reason: String?
+    public let riskLevel: String
+    public let sellerMessage: String
+    public let type: String
 }

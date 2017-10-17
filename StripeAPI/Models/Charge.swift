@@ -8,32 +8,32 @@
 
 import Foundation
 
-struct Charge: Codable {
+public struct Charge: Codable {
 
-    let id: String
-    let object: String
-    let amount: Int
-    let amount_refunded: Int
-    let balance_transaction: String
-    let captured: Bool
-    let created: TimeInterval
-    let currency: String
-    let customer: String?
-    let description: String?
+    public let id: String
+    public let object: String
+    public let amount: Int
+    public let amount_refunded: Int
+    public let balance_transaction: String
+    public let captured: Bool
+    public let created: TimeInterval
+    public let currency: String
+    public let customer: String?
+    public let description: String?
 //    let fraud_details: [AnyHashable: Any]
-    let invoice: String?
-    let livemode: Bool?
+    public let invoice: String?
+    public let livemode: Bool?
 //    let metadata: [AnyHashable: Any]
-    let order: String?
-    let outcome: Outcome
-    let paid: Bool
-    let receipt_email: String?
-    let receipt_number: String?
-    let refunded: Bool
-    let refunds: String
-    let review: String?
-    let source: Card
-    let source_transfer: String?
-    let statement_descriptor: String?
-    let status: String
+    public let order: String?
+    public let outcome: Outcome
+    public let paid: Bool
+    public let receipt_email: String?
+    public let receipt_number: String?
+    public let refunded: Bool
+    public let refunds: String
+    public let review: String?
+    public let source: Card
+    public let source_transfer: String?
+    public let statement_descriptor: String?
+    public let status: String
 }

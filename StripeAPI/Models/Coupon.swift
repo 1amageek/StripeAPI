@@ -26,23 +26,23 @@ public struct Coupon: Codable {
         case valid
     }
 
-    enum Duration: String, Codable {
+    public enum Duration: String, Codable {
         case forever
         case once
         case repeating
     }
 
-    let id: String
-    let object: String
-    let amountOff: Int
-    let created: TimeInterval
-    let currency: Currency
-    let duration: Duration
-    let durationInMonths: Int?
-    let livemode: Bool
-    let maxRedemptions: Int?
-    let percentOff: Int?
-    let redeemBy: TimeInterval
-    let timesRedeemed: Int
-    let valid: Bool
+    public let id: String
+    public let object: String
+    public let amountOff: Int
+    public let created: TimeInterval
+    public let currency: Currency
+    public let duration: Duration
+    public let durationInMonths: Int?
+    public let livemode: Bool
+    public let maxRedemptions: Int?
+    public let percentOff: Int?
+    public let redeemBy: TimeInterval
+    public let timesRedeemed: Int
+    public let valid: Bool
 }

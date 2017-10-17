@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct Inventory: Codable {
-    enum InventoryType: String, Codable {
+public struct Inventory: Codable {
+    public enum InventoryType: String, Codable {
         case finite, bucket, infinite
     }
 
-    enum BucketValue: String, Codable {
+    public enum BucketValue: String, Codable {
         case limited, out_of_stock, in_stock
     }
 
-    let quantity: Int?
-    let type: InventoryType
-    let value: BucketValue?
+    public let quantity: Int?
+    public let type: InventoryType
+    public let value: BucketValue?
 }

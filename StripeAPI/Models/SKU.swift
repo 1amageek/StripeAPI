@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SKU: Codable {
+public struct SKU: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -20,24 +20,25 @@ struct SKU: Codable {
         case image
         case inventory
         case livemode
+        case metadata
         case packageDimensions = "package_dimensions"
         case price
         case product
         case updated
     }
 
-    let id: String
-    let object: String
-    let active: Bool
-    let attributes: [String: String]
-    let created: TimeInterval
-    let currency: String
-    let image: URL?
-    let inventory: Inventory
-    let livemode: Bool
-    //        let metadata: [:]
-    let packageDimensions: PackageDimensions?
-    let price: Int
-    let product: String
-    let updated: TimeInterval
+    public let id: String
+    public let object: String
+    public let active: Bool
+    public let attributes: [String: String]
+    public let created: TimeInterval
+    public let currency: String
+    public let image: URL?
+    public let inventory: Inventory
+    public let livemode: Bool
+    public let metadata: [String: String]
+    public let packageDimensions: PackageDimensions?
+    public let price: Int
+    public let product: String
+    public let updated: TimeInterval
 }

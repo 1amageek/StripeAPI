@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct PackageDimensions: Codable {
-    let height: Float
-    let length: Float
-    let weight: Float
-    let width: Float
+public struct PackageDimensions: Codable {
+    public let height: Float
+    public let length: Float
+    public let weight: Float
+    public let width: Float
 }

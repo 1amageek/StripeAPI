@@ -12,6 +12,8 @@
 		1269530B1F80F3F5004F3373 /* StripeAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 126952FD1F80F3F5004F3373 /* StripeAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1287EBF81F959FBE0017D9C8 /* Shipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287EBF71F959FBE0017D9C8 /* Shipping.swift */; };
 		1287EBFA1F95A01E0017D9C8 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287EBF91F95A01E0017D9C8 /* Address.swift */; };
+		1287EBFE1F95BE1D0017D9C8 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287EBFD1F95BE1D0017D9C8 /* Subscription.swift */; };
+		1287EC021F95CEEF0017D9C8 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287EC011F95CEEF0017D9C8 /* Configuration.swift */; };
 		128CAE191F9483E400605189 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE181F9483E400605189 /* OrderItem.swift */; };
 		128CAE1B1F94847C00605189 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE1A1F94847C00605189 /* Currency.swift */; };
 		128CAE1D1F948F4F00605189 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE1C1F948F4F00605189 /* Inventory.swift */; };
@@ -55,6 +57,8 @@
 		1269530A1F80F3F5004F3373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1287EBF71F959FBE0017D9C8 /* Shipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shipping.swift; sourceTree = "<group>"; };
 		1287EBF91F95A01E0017D9C8 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		1287EBFD1F95BE1D0017D9C8 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
+		1287EC011F95CEEF0017D9C8 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		128CAE181F9483E400605189 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		128CAE1A1F94847C00605189 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		128CAE1C1F948F4F00605189 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			children = (
 				126952FD1F80F3F5004F3373 /* StripeAPI.h */,
 				129F4A801F80F88D00D91D25 /* StripeAPI.swift */,
+				1287EC011F95CEEF0017D9C8 /* Configuration.swift */,
 				129F4A8F1F8103EE00D91D25 /* StripeAPIDecoder.swift */,
 				128CAE241F94994E00605189 /* APIProtocol.swift */,
 				129F4A821F80F92B00D91D25 /* Models */,
@@ -162,6 +167,7 @@
 			children = (
 				128CAE1A1F94847C00605189 /* Currency.swift */,
 				129F4A7C1F80F70700D91D25 /* Customer.swift */,
+				1287EBFD1F95BE1D0017D9C8 /* Subscription.swift */,
 				1287EBF71F959FBE0017D9C8 /* Shipping.swift */,
 				1287EBF91F95A01E0017D9C8 /* Address.swift */,
 				129FE6F11F94FB0C002AC702 /* Discount.swift */,
@@ -409,6 +415,7 @@
 				1287EBF81F959FBE0017D9C8 /* Shipping.swift in Sources */,
 				12C5BF5D1F81084300EE1F69 /* Source.swift in Sources */,
 				128CAE1F1F948F9000605189 /* PackageDimensions.swift in Sources */,
+				1287EC021F95CEEF0017D9C8 /* Configuration.swift in Sources */,
 				129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */,
 				129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */,
 				128CAE251F94994E00605189 /* APIProtocol.swift in Sources */,
@@ -417,6 +424,7 @@
 				129F4A8A1F80F9F600D91D25 /* Product.swift in Sources */,
 				129F4A901F8103EE00D91D25 /* StripeAPIDecoder.swift in Sources */,
 				128CAE1D1F948F4F00605189 /* Inventory.swift in Sources */,
+				1287EBFE1F95BE1D0017D9C8 /* Subscription.swift in Sources */,
 				128CAE1B1F94847C00605189 /* Currency.swift in Sources */,
 				129F4A8E1F80FA5A00D91D25 /* List.swift in Sources */,
 			);

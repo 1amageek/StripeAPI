@@ -8,9 +8,12 @@
 
 import XCTest
 @testable import StripeAPI
+import APIKit
 
 class StripeAPITests: XCTestCase {
-    
+
+    let configure: Configuration = Configuration(secretKey: TestConfiguration.secretKey)
+
     override func setUp() {
         super.setUp()
     }
@@ -20,8 +23,16 @@ class StripeAPITests: XCTestCase {
         super.tearDown()
     }
     
-    func testCustomer() {
-        
+    func testCustomerCreate() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Customer")
+        Customer.Create().send { (result) in
+            switch result {
+            case .success(let response): print(response)
+            case .failure(let error): print(error)
+            }
+            expectation.fulfill()
+        }
+        self.wait(for: [expectation], timeout: 10)
     }
     
     func testPerformanceExample() {
