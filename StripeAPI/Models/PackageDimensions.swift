@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PackageDimensions: Decodable {
+struct PackageDimensions: Codable {
     let height: Float
     let length: Float
     let weight: Float

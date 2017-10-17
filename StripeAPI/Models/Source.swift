@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Source: Decodable {
+struct Source: Codable {
     let amount: Double?
     let currency: String?
     let flow: String?

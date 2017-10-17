@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct List<T: Decodable>: Decodable {
+struct List<T: Codable>: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case object

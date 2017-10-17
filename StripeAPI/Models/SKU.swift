@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SKU: Decodable {
+struct SKU: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case id

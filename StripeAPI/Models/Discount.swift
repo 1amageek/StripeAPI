@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Discount: Decodable {
+public struct Discount: Codable {
 
     let object: String
     let coupon: Coupon?

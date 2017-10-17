@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Inventory: Decodable {
-    enum InventoryType: String, Decodable {
+struct Inventory: Codable {
+    enum InventoryType: String, Codable {
         case finite, bucket, infinite
     }
 
-    enum BucketValue: String, Decodable {
+    enum BucketValue: String, Codable {
         case limited, out_of_stock, in_stock
     }
 

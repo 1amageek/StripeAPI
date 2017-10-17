@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Charge: Decodable {
+struct Charge: Codable {
 
     let id: String
     let object: String

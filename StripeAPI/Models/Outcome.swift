@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Outcome: Decodable {
+struct Outcome: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case networkStatus = "network_status"

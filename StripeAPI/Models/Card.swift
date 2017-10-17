@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Card: Decodable {
+struct Card: Codable {
 
     let id: String
     let object: String

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Product: Decodable {
+struct Product: Codable {
     let id: String
     let object: String
     let active: Bool

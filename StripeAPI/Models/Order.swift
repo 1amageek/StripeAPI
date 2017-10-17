@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Order: Decodable {
+struct Order: Codable {
 
     let id: String
     let object: String
