@@ -23,7 +23,7 @@ class StripeAPITests: XCTestCase {
         super.tearDown()
     }
     
-    func testCustomerCreate() {
+    func testCustomer() {
         let expectation: XCTestExpectation = XCTestExpectation(description: "Customer")
         Customer.Create().send { (result) in
             switch result {
@@ -43,7 +43,16 @@ class StripeAPITests: XCTestCase {
                             case .success(let response):
                                 XCTAssertEqual(response.id, id)
                                 XCTAssertEqual(response.email, email)
-                                expectation.fulfill()
+                                Customer.Delete(id: id).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        XCTAssertEqual(response.id, id)
+                                        XCTAssertEqual(response.deleted, true)
+                                        expectation.fulfill()
+                                    case .failure(let error): print(error)
+                                    }
+                                })
                             case .failure(let error): print(error)
                             }
                         })
@@ -53,7 +62,7 @@ class StripeAPITests: XCTestCase {
             case .failure(let error): print(error)
             }
         }
-        self.wait(for: [expectation], timeout: 10)
+        self.wait(for: [expectation], timeout: 5)
     }
     
     func testPerformanceExample() {

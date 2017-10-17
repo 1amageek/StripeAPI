@@ -51,7 +51,7 @@ extension Customer {
 
     // MARK: - Create
 
-    public struct Create: StripeAPI {
+    public struct Create: StripeParametersAPI {
 
         public typealias Response = Customer
 
@@ -59,14 +59,14 @@ extension Customer {
 
         public var path: String { return "/customers" }
 
-        private var params: Paramaters
+        public var _parameters: Any?
 
         public init() {
-            self.params = Paramaters()
+            self._parameters = Paramaters()
         }
 
         public init(parameters: Paramaters) {
-            self.params = parameters
+            self._parameters = parameters
         }
 
         public struct Paramaters: Codable {
@@ -109,7 +109,7 @@ extension Customer {
 
     // MARK: - Update
 
-    public struct Update: StripeAPI {
+    public struct Update: StripeParametersAPI {
 
         public typealias Response = Customer
 
@@ -119,7 +119,12 @@ extension Customer {
 
         public let id: String
 
-        public let parameters: Parameters
+        public var _parameters: Any?
+
+        public init(id: String, parameters: Parameters) {
+            self.id = id
+            self._parameters = parameters
+        }
 
         public struct Parameters: Codable {
 

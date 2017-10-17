@@ -12,19 +12,28 @@ import Stripe
 import Result
 
 public protocol StripeAPI: Request {
-    associatedtype Paramaters = Void
+
+    associatedtype Parameters = Void
 }
 
-public extension StripeAPI where Paramaters == Void {
+public protocol ParametersProtocol {
 
+    var _parameters: Any? { get set }
 }
 
-public extension StripeAPI where Paramaters: Encodable {
+public typealias StripeParametersAPI = ParametersProtocol & StripeAPI
+
+public extension StripeAPI where Parameters: Encodable, Self: ParametersProtocol {
+
+    public var parameters: Any? { return _parameters }
+
     public var bodyParameters: BodyParameters? {
-        guard let parameters = self.parameters as? Paramaters else  {
+        guard let parameters = self.parameters as? Parameters else  {
             return nil
         }
-        return StripeAPIEncoder(from: parameters)
+        let data: Data = try! JSONEncoder().encode(parameters)
+        let json: [String: Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
+        return FormURLEncodedBodyParameters(formObject: json)
     }
 }
 
@@ -47,7 +56,7 @@ extension StripeAPI {
     }
 
     public var headerFields: [String : String] {
-        return ["authorization": "Basic \(encodedKey)"]
+        return ["authorization": "Bearer \(secretKey)"]
     }
 
     public var secretKey: String {
@@ -74,29 +83,6 @@ extension StripeAPI {
     public func send(_ block: @escaping (Result<Self.Response, SessionTaskError>) -> Void) -> SessionTask? {
         return Session.send(self, callbackQueue: .main, handler: block)
     }
-}
-
-final class StripeAPIEncoder<T: Encodable>: BodyParameters {
-
-    typealias Parameters = T
-
-    var contentType: String {
-        return "application/json"
-    }
-
-    let from: Parameters
-
-    init(from: Parameters) {
-        self.from = from
-    }
-
-    func buildEntity() throws -> RequestBodyEntity {
-        return .data(try JSONEncoder().encode(from))
-    }
-}
-
-public enum StripeAPIError: Error {
-    case network
 }
 
 final class DecodableDataParser: DataParser {
