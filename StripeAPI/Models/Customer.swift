@@ -49,6 +49,8 @@ public struct Customer: Codable {
 
 extension Customer {
 
+    static var path: String { return "/customers"}
+
     // MARK: - Create
 
     public struct Create: StripeParametersAPI {
@@ -57,7 +59,7 @@ extension Customer {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/customers" }
+        public var path: String { return Customer.path }
 
         public var _parameters: Any?
 
@@ -102,7 +104,7 @@ extension Customer {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "/customers/\(id)" }
+        public var path: String { return "/\(Customer.path)/\(id)" }
 
         public let id: String
     }
@@ -115,7 +117,7 @@ extension Customer {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/customers/\(id)" }
+        public var path: String { return "/\(Customer.path)/\(id)" }
 
         public let id: String
 
@@ -158,7 +160,7 @@ extension Customer {
 
         public var method: HTTPMethod { return .delete }
 
-        public var path: String { return "/customers/\(id)" }
+        public var path: String { return "/\(Customer.path)/\(id)" }
 
         public let id: String
 
