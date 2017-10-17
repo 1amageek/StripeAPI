@@ -59,7 +59,17 @@ extension Customer {
 
         public var path: String { return "/customers" }
 
-        public struct Parameters: Codable {
+        private var params: Paramaters
+
+        public init() {
+            self.params = Paramaters()
+        }
+
+        public init(parameters: Paramaters) {
+            self.params = parameters
+        }
+
+        public struct Paramaters: Codable {
             private enum CodingKeys: String, CodingKey {
                 case accountBalance
                 case businessVatID
@@ -82,16 +92,6 @@ extension Customer {
             public let shipping: Shipping? = nil
             public let source: Source? = nil
         }
-
-        public let paramaters: Parameters
-
-        public init() {
-            self.paramaters = Parameters()
-        }
-
-//        init(parameters: Parameters = Parameters()) {
-//            self.paramaters = parameters
-//        }
     }
 
     // MARK: - Retrieve
@@ -100,14 +100,66 @@ extension Customer {
 
         public typealias Response = Customer
 
-        public var method: HTTPMethod { return .post }
+        public var method: HTTPMethod { return .get }
 
         public var path: String { return "/customers/\(id)" }
 
         public let id: String
     }
 
+    // MARK: - Update
+
+    public struct Update: StripeAPI {
+
+        public typealias Response = Customer
+
+        public var method: HTTPMethod { return .post }
+
+        public var path: String { return "/customers/\(id)" }
+
+        public let id: String
+
+        public let parameters: Parameters
+
+        public struct Parameters: Codable {
+
+            private enum CodingKeys: String, CodingKey {
+                case accountBalance
+                case businessVatID
+                case coupon
+                case defaultSource
+                case description
+                case email
+                case metadata
+                case shipping
+                case source
+            }
+
+            public var accountBalance: Int? = nil
+            public var businessVatID: String? = nil
+            public var coupon: Coupon? = nil
+            public var defaultSource: String? = nil
+            public var description: String? = nil
+            public var email: String? = nil
+            public var metadata: [String: String]? = nil
+            public var shipping: Shipping? = nil
+            public var source: Source? = nil
+        }
+    }
+
+    // MARK: - Delete
+
+    public struct Delete: StripeAPI {
+
+        public var method: HTTPMethod { return .delete }
+
+        public var path: String { return "/customers/\(id)" }
+
+        public let id: String
+
+        public struct Response: Codable {
+            public let deleted: Bool
+            public let id: String
+        }
+    }
 }
-
-
-

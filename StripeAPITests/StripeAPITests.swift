@@ -27,10 +27,31 @@ class StripeAPITests: XCTestCase {
         let expectation: XCTestExpectation = XCTestExpectation(description: "Customer")
         Customer.Create().send { (result) in
             switch result {
-            case .success(let response): print(response)
+            case .success(let response):
+                print(response)
+                XCTAssertNotNil(response)
+                let id: String = response.id
+                Customer.Retrieve(id: id).send({ (result) in
+                    switch result {
+                    case .success(let response):
+                        XCTAssertEqual(response.id, id)
+                        let email: String = "sample@com"
+                        var parameters: Customer.Update.Parameters = Customer.Update.Parameters()
+                        parameters.email = email
+                        Customer.Update(id: id, parameters: parameters).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                XCTAssertEqual(response.id, id)
+                                XCTAssertEqual(response.email, email)
+                                expectation.fulfill()
+                            case .failure(let error): print(error)
+                            }
+                        })
+                    case .failure(let error): print(error)
+                    }
+                })
             case .failure(let error): print(error)
             }
-            expectation.fulfill()
         }
         self.wait(for: [expectation], timeout: 10)
     }
