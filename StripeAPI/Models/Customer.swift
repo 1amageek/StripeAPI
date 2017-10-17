@@ -10,7 +10,9 @@ import Foundation
 import APIKit
 import Stripe
 
-public struct Customer: Codable {
+public struct Customer: StripeModel {
+
+    public static var path: String { return "/customers"}
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -49,7 +51,7 @@ public struct Customer: Codable {
 
 extension Customer {
 
-    static var path: String { return "/customers"}
+
 
     // MARK: - Create
 

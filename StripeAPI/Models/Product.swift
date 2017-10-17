@@ -8,7 +8,10 @@
 
 import Foundation
 
-public struct Product: Codable {
+public struct Product: StripeModel {
+
+    public static var path: String { return "/products"}
+
     public let id: String
     public let object: String
     public let active: Bool

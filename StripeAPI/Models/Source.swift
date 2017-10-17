@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct Source: Codable {
+public struct Source: StripeModel {
+    public static var path: String { return "/sources"}
     public let amount: Double?
     public let currency: Currency?
     public let flow: String?

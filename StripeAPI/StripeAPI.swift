@@ -16,6 +16,13 @@ public protocol StripeAPI: Request {
     associatedtype Parameters = Void
 }
 
+public protocol ListProtocol {
+
+    static var path: String { get }
+}
+
+public typealias StripeModel = Codable & ListProtocol
+
 public protocol ParametersProtocol {
 
     var _parameters: Any? { get set }

@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import APIKit
 
-public struct List<T: Codable>: Codable {
+
+public struct List<T: StripeModel>: Codable {
+
+    public typealias Element = T
 
     private enum CodingKeys: String, CodingKey {
         case object
@@ -23,4 +27,30 @@ public struct List<T: Codable>: Codable {
     public let hasMore: Bool
     public let totalCount: Int
     public let url: String
+}
+
+extension List {
+
+    public struct Get: StripeAPI {
+
+        public var method: HTTPMethod { return .get }
+
+        public var path: String { return "\(Element.path)" }
+
+        public typealias Response = List<Element>
+
+        public let limit: Int = 30
+    }
+
+    public struct Next: StripeAPI {
+        public var method: HTTPMethod { return .get }
+
+        public var path: String { return Element.path }
+
+        public typealias Response = List<Element>
+
+        public let limit: Int = 30
+
+        public let endingBefore: String
+    }
 }

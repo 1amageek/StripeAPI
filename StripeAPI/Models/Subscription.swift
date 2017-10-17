@@ -8,7 +8,9 @@
 
 import Foundation
 
-public struct Subscription: Codable {
+public struct Subscription: StripeModel {
+
+    public static var path: String { return "subscriptions" }
 
     let id: String
 }

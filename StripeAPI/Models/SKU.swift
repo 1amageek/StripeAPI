@@ -8,7 +8,9 @@
 
 import Foundation
 
-public struct SKU: Codable {
+public struct SKU: StripeModel {
+
+    public static var path: String { return "/skus"}
 
     private enum CodingKeys: String, CodingKey {
         case id
