@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import APIKit
 
 public struct Order: StripeModel, ListProtocol {
 
@@ -36,7 +37,7 @@ public struct Order: StripeModel, ListProtocol {
         case updated
     }
 
-    public struct statusTransitions: StripeModel {
+    public struct StatusTransitions: StripeModel {
         public let canceled: TimeInterval?
         public let fulfiled: TimeInterval?
         public let paid: TimeInterval?
@@ -70,7 +71,158 @@ public struct Order: StripeModel, ListProtocol {
     public let shipping: Shipping
     public let shippingMethods: [ShippingMethod]
     public let status:  Status
-    public let statusTransitions: statusTransitions
+    public let statusTransitions: StatusTransitions
     public let updated: TimeInterval
+}
+
+extension Order {
+
+    // MARK: - Create
+
+    public struct Create: StripeParametersAPI {
+
+        public typealias Response = Order
+
+        public var method: HTTPMethod { return .post }
+
+        public var path: String { return Order.path }
+
+        public var _parameters: Any?
+
+        public init(currentcy: Currency) {
+            self._parameters = Paramaters(currency: currentcy)
+        }
+
+        public init(parameters: Paramaters) {
+            self._parameters = parameters
+        }
+
+        public struct Paramaters: Codable {
+
+            private enum CodingKeys: String, CodingKey {
+                case currency
+                case coupon
+                case customer
+                case email
+                case items
+                case metadata
+                case shipping
+            }
+
+            public let currency: Currency
+            public let coupon: Coupon? = nil
+            public let customer: String? = nil
+            public let email: String? = nil
+            public let items: [OrderItem]? = nil
+            public let metadata: [String: String]? = nil
+            public let shipping: Shipping? = nil
+        }
+    }
+
+    // MARK: - Retrieve
+
+    public struct Retrieve: StripeAPI {
+
+        public typealias Response = Order
+
+        public var method: HTTPMethod { return .get }
+
+        public var path: String { return "/\(Order.path)/\(id)" }
+
+        public let id: String
+    }
+
+    // MARK: - Update
+
+    public struct Update: StripeParametersAPI {
+
+        public typealias Response = Order
+
+        public var method: HTTPMethod { return .post }
+
+        public var path: String { return "/\(Order.path)/\(id)" }
+
+        public let id: String
+
+        public var _parameters: Any?
+
+        public init(id: String, parameters: Parameters) {
+            self.id = id
+            self._parameters = parameters
+        }
+
+        public struct Paramaters: Codable {
+
+            private enum CodingKeys: String, CodingKey {
+                case coupon
+                case metadata
+                case selectedShippingMethod = "selected_shipping_method"
+                case shipping
+                case status
+            }
+
+            public var coupon: Coupon? = nil
+            public var metadata: [String: String]? = nil
+            public var selectedShippingMethod: String? = nil
+            public var shipping: Shipping? = nil
+            public var status: Order.Status? = nil
+        }
+    }
+
+    // MARK: - Pay
+
+    public struct Pay: StripeAPI {
+
+        public typealias Response = Order
+
+        public var method: HTTPMethod { return .post }
+
+        public var path: String { return "/\(Order.path)/\(id)/pay" }
+
+        public var _parameters: Any?
+
+        public let id: String
+
+        public init(id: String, customer: String) {
+            self.id = id
+            self._parameters = Paramaters(customer: customer)
+        }
+
+        public init(id: String, source: String, email: String) {
+            self.id = id
+            self._parameters = Paramaters(source: source, email: email)
+        }
+
+        public init(id: String, parameters: Parameters) {
+            self.id = id
+            self._parameters = parameters
+        }
+
+        public struct Paramaters: Codable {
+
+            private enum CodingKeys: String, CodingKey {
+                case customer
+                case source
+                case applicationFee = "application_fee"
+                case email
+                case metadata
+            }
+
+            public init(customer: String) {
+                self.customer = customer
+            }
+
+            public init(source: String, email: String) {
+                self.source = source
+                self.email = email
+            }
+
+            public var customer: String? = nil
+            public var source: String? = nil
+            public var applicationFee: ApplicationFee? = nil
+            public var email: String? = nil
+            public var metadata: [String: String]? = nil
+        }
+    }
 }
 
