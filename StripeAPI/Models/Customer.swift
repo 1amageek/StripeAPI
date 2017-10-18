@@ -85,15 +85,15 @@ extension Customer {
                 case source
             }
 
-            public let accountBalance: Int? = nil
-            public let businessVatID: String? = nil
-            public let coupon: Coupon? = nil
-            public let defaultSource: String? = nil
-            public let description: String? = nil
-            public let email: String? = nil
-            public let metadata: [String: String]? = nil
-            public let shipping: Shipping? = nil
-            public let source: Source? = nil
+            public var accountBalance: Int? = nil
+            public var businessVatID: String? = nil
+            public var coupon: Coupon? = nil
+            public var defaultSource: String? = nil
+            public var description: String? = nil
+            public var email: String? = nil
+            public var metadata: [String: String]? = nil
+            public var shipping: Shipping? = nil
+            public var source: Source? = nil
         }
     }
 

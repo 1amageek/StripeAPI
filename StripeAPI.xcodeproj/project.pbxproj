@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		120588E81F970D1600614ADF /* ApplicationFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120588E71F970D1600614ADF /* ApplicationFee.swift */; };
 		120588EA1F970F7100614ADF /* Refund.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120588E91F970F7100614ADF /* Refund.swift */; };
+		12578A8D1F9739C900EE0CAC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12578A8C1F9739C900EE0CAC /* Account.swift */; };
+		12578A8F1F973EC200EE0CAC /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12578A8E1F973EC200EE0CAC /* BankAccount.swift */; };
 		126953041F80F3F5004F3373 /* StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126952FA1F80F3F5004F3373 /* StripeAPI.framework */; };
 		126953091F80F3F5004F3373 /* StripeAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126953081F80F3F5004F3373 /* StripeAPITests.swift */; };
 		1269530B1F80F3F5004F3373 /* StripeAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 126952FD1F80F3F5004F3373 /* StripeAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -54,6 +56,8 @@
 /* Begin PBXFileReference section */
 		120588E71F970D1600614ADF /* ApplicationFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFee.swift; sourceTree = "<group>"; };
 		120588E91F970F7100614ADF /* Refund.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refund.swift; sourceTree = "<group>"; };
+		12578A8C1F9739C900EE0CAC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		12578A8E1F973EC200EE0CAC /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
 		126952FA1F80F3F5004F3373 /* StripeAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StripeAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		126952FD1F80F3F5004F3373 /* StripeAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripeAPI.h; sourceTree = "<group>"; };
 		126952FE1F80F3F5004F3373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 				120588E71F970D1600614ADF /* ApplicationFee.swift */,
 				120588E91F970F7100614ADF /* Refund.swift */,
 				128CAE181F9483E400605189 /* OrderItem.swift */,
+				12578A8C1F9739C900EE0CAC /* Account.swift */,
+				12578A8E1F973EC200EE0CAC /* BankAccount.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				129FE6F21F94FB0C002AC702 /* Discount.swift in Sources */,
+				12578A8D1F9739C900EE0CAC /* Account.swift in Sources */,
 				129F4A7F1F80F83D00D91D25 /* Order.swift in Sources */,
 				129F4A811F80F88D00D91D25 /* StripeAPI.swift in Sources */,
 				129FE6F41F94FBE9002AC702 /* Coupon.swift in Sources */,
@@ -426,6 +433,7 @@
 				128CAE1F1F948F9000605189 /* PackageDimensions.swift in Sources */,
 				1287EC021F95CEEF0017D9C8 /* Configuration.swift in Sources */,
 				129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */,
+				12578A8F1F973EC200EE0CAC /* BankAccount.swift in Sources */,
 				129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */,
 				128CAE251F94994E00605189 /* APIProtocol.swift in Sources */,
 				129F4A841F80F9C200D91D25 /* Card.swift in Sources */,

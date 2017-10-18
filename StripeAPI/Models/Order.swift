@@ -224,5 +224,54 @@ extension Order {
             public var metadata: [String: String]? = nil
         }
     }
+
+    // MARK: - Return
+
+    public struct Return: StripeAPI {
+
+        public typealias Response = Order
+
+        public var method: HTTPMethod { return .post }
+
+        public var path: String { return "/\(Order.path)/\(id)/return" }
+
+        public var _parameters: Any?
+
+        public let id: String
+
+        public init(id: String, items: [Paramaters.Item]) {
+            self.id = id
+            self._parameters = Paramaters(items: items)
+        }
+
+        public init(id: String, parameters: Parameters) {
+            self.id = id
+            self._parameters = parameters
+        }
+
+        public struct Paramaters: Codable {
+
+            public struct Item: Codable {
+
+                public enum ItemType: String, Codable {
+                    case sku
+                    case tax
+                    case shipping
+                }
+
+                public let amount: Int?
+                public let description: String?
+                public let parent: String?
+                public let quantity: Int?
+                public let type: ItemType
+            }
+
+            public init(items: [Item]) {
+                self.items = items
+            }
+
+            public var items: [Item]? = nil
+        }
+    }
 }
 
