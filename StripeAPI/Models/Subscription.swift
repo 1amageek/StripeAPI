@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Subscription: StripeModel {
+public struct Subscription: StripeModel, ListProtocol {
 
     public static var path: String { return "subscriptions" }
 

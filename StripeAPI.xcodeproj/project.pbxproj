@@ -14,6 +14,7 @@
 		1287EBFA1F95A01E0017D9C8 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287EBF91F95A01E0017D9C8 /* Address.swift */; };
 		1287EBFE1F95BE1D0017D9C8 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287EBFD1F95BE1D0017D9C8 /* Subscription.swift */; };
 		1287EC021F95CEEF0017D9C8 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287EC011F95CEEF0017D9C8 /* Configuration.swift */; };
+		1287EC041F96F02F0017D9C8 /* ShippingMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1287EC031F96F02F0017D9C8 /* ShippingMethod.swift */; };
 		128CAE191F9483E400605189 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE181F9483E400605189 /* OrderItem.swift */; };
 		128CAE1B1F94847C00605189 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE1A1F94847C00605189 /* Currency.swift */; };
 		128CAE1D1F948F4F00605189 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE1C1F948F4F00605189 /* Inventory.swift */; };
@@ -59,6 +60,7 @@
 		1287EBF91F95A01E0017D9C8 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		1287EBFD1F95BE1D0017D9C8 /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		1287EC011F95CEEF0017D9C8 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		1287EC031F96F02F0017D9C8 /* ShippingMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingMethod.swift; sourceTree = "<group>"; };
 		128CAE181F9483E400605189 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		128CAE1A1F94847C00605189 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		128CAE1C1F948F4F00605189 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				129F4A7C1F80F70700D91D25 /* Customer.swift */,
 				1287EBFD1F95BE1D0017D9C8 /* Subscription.swift */,
 				1287EBF71F959FBE0017D9C8 /* Shipping.swift */,
+				1287EC031F96F02F0017D9C8 /* ShippingMethod.swift */,
 				1287EBF91F95A01E0017D9C8 /* Address.swift */,
 				129FE6F11F94FB0C002AC702 /* Discount.swift */,
 				129FE6F31F94FBE9002AC702 /* Coupon.swift */,
@@ -425,6 +428,7 @@
 				129F4A901F8103EE00D91D25 /* StripeAPIDecoder.swift in Sources */,
 				128CAE1D1F948F4F00605189 /* Inventory.swift in Sources */,
 				1287EBFE1F95BE1D0017D9C8 /* Subscription.swift in Sources */,
+				1287EC041F96F02F0017D9C8 /* ShippingMethod.swift in Sources */,
 				128CAE1B1F94847C00605189 /* Currency.swift in Sources */,
 				129F4A8E1F80FA5A00D91D25 /* List.swift in Sources */,
 			);

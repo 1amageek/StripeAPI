@@ -11,6 +11,12 @@ import APIKit
 import Stripe
 import Result
 
+/**
+ Stripe Model
+ Stripe model supports coding possibilities
+ */
+public typealias StripeModel = Codable
+
 public protocol StripeAPI: Request {
 
     associatedtype Parameters = Void
@@ -20,8 +26,6 @@ public protocol ListProtocol {
 
     static var path: String { get }
 }
-
-public typealias StripeModel = Codable & ListProtocol
 
 public protocol ParametersProtocol {
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Shipping: Codable {
+public struct Shipping: StripeModel {
 
     public let address: Address
     public let name: String

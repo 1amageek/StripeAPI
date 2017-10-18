@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Outcome: Codable {
+public struct Outcome: StripeModel {
 
     private enum CodingKeys: String, CodingKey {
         case networkStatus = "network_status"

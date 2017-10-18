@@ -8,11 +8,18 @@
 
 import Foundation
 
-public struct OrderItem: Decodable {
+public struct OrderItem: StripeModel {
+
+    public enum ItemType: String, StripeModel {
+        case sku
+        case tax
+        case shipping
+        case discount
+    }
 
     public let object: String
     public let amount: Int
-    public let currency: String
+    public let currency: Currency
     public let description: String
     public let parent: String
     public let quantity: Int?

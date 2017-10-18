@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Coupon: Codable {
+public struct Coupon: StripeModel {
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -26,7 +26,7 @@ public struct Coupon: Codable {
         case valid
     }
 
-    public enum Duration: String, Codable {
+    public enum Duration: String, StripeModel {
         case forever
         case once
         case repeating

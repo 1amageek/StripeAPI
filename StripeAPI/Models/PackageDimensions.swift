@@ -8,7 +8,8 @@
 
 import Foundation
 
-public struct PackageDimensions: Codable {
+public struct PackageDimensions: StripeModel {
+    
     public let height: Float
     public let length: Float
     public let weight: Float

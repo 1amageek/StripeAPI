@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Card: Codable {
+public struct Card: StripeModel {
 
     public let id: String
     public let object: String
@@ -33,5 +33,4 @@ public struct Card: Codable {
     public let metadata: [String: String]
     public let name: String?
     public let tokenization_method: String?
-
 }

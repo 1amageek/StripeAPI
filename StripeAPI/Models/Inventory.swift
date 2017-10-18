@@ -8,12 +8,13 @@
 
 import Foundation
 
-public struct Inventory: Codable {
-    public enum InventoryType: String, Codable {
+public struct Inventory: StripeModel {
+
+    public enum InventoryType: String, StripeModel {
         case finite, bucket, infinite
     }
 
-    public enum BucketValue: String, Codable {
+    public enum BucketValue: String, StripeModel {
         case limited, out_of_stock, in_stock
     }
 

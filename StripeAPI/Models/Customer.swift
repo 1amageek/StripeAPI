@@ -10,7 +10,7 @@ import Foundation
 import APIKit
 import Stripe
 
-public struct Customer: StripeModel {
+public struct Customer: StripeModel, ListProtocol {
 
     public static var path: String { return "/customers"}
 
@@ -51,8 +51,6 @@ public struct Customer: StripeModel {
 
 extension Customer {
 
-
-
     // MARK: - Create
 
     public struct Create: StripeParametersAPI {
@@ -74,6 +72,7 @@ extension Customer {
         }
 
         public struct Paramaters: Codable {
+            
             private enum CodingKeys: String, CodingKey {
                 case accountBalance
                 case businessVatID

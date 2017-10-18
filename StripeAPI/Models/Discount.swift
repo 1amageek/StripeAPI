@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Discount: Codable {
+public struct Discount: StripeModel {
 
     public let object: String
     public let coupon: Coupon?

@@ -9,7 +9,6 @@
 import Foundation
 import APIKit
 
-
 public struct List<T: StripeModel>: Codable {
 
     public typealias Element = T
@@ -29,7 +28,7 @@ public struct List<T: StripeModel>: Codable {
     public let url: String
 }
 
-extension List {
+extension List where T: ListProtocol {
 
     public struct Get: StripeAPI {
 
@@ -43,6 +42,7 @@ extension List {
     }
 
     public struct Next: StripeAPI {
+
         public var method: HTTPMethod { return .get }
 
         public var path: String { return Element.path }

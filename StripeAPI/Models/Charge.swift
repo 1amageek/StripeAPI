@@ -9,7 +9,7 @@
 import Foundation
 import APIKit
 
-public struct Charge: Codable {
+public struct Charge: StripeModel {
 
     public let id: String
     public let object: String

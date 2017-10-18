@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Address: Codable {
+public struct Address: StripeModel {
 
     private enum CodingKeys: String, CodingKey {
         case line1
