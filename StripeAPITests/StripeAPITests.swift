@@ -116,19 +116,93 @@ class StripeAPITests: XCTestCase {
         self.wait(for: [expectation], timeout: 5)
     }
 
-//    func testTestModel() {
-//        let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")
-//        Account.Retrieve(id: "acct_1BEaYWCe1UurMn4Q").send { (result) in
-//            switch result {
-//            case .success(let response):
-//                print(response)
-//            case .failure(let error):
-//                print(error)
-//            }
-//            expectation.fulfill()
-//        }
-//        self.wait(for: [expectation], timeout: 5)
-//    }
+    func testProduct() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Product")
+        Product.Create(name: "Product1号").send { (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+                XCTAssertNotNil(response)
+                let id: String = response.id
+                Product.Retrieve(id: id).send({ (result) in
+                    switch result {
+                    case .success(let response):
+                        XCTAssertEqual(response.id, id)
+                        let caption: String = "Productのキャプション"
+                        var parameters: Product.Update.Parameters = Product.Update.Parameters()
+                        parameters.caption = caption
+                        Product.Update(id: id, parameters: parameters).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                XCTAssertEqual(response.id, id)
+                                XCTAssertEqual(response.caption, caption)
+                                Product.Delete(id: id).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        XCTAssertEqual(response.id, id)
+                                        XCTAssertEqual(response.deleted, true)
+                                        expectation.fulfill()
+                                    case .failure(let error): print(error)
+                                    }
+                                })
+                            case .failure(let error): print(error)
+                            }
+                        })
+                    case .failure(let error): print(error)
+                    }
+                })
+            case .failure(let error):
+                print(error)
+            }
+            expectation.fulfill()
+        }
+        self.wait(for: [expectation], timeout: 5)
+    }
+
+    func testSKU() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "SKU")
+        Product.Create(name: "Product2号").send { (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+                XCTAssertNotNil(response)
+                let id: String = response.id
+                SKU.Create(currency: Currency.JPY,
+                           inventory: SKU.Inventory(type: .finite, quantity: 10),
+                           price: 1000,
+                           product: id).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                print(response)
+                                XCTAssertNotNil(response)
+                                expectation.fulfill()
+                            case .failure(let error): print(error)
+                            }
+                           })
+            case .failure(let error):
+                print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 5)
+    }
+
+    func testTestModel() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")
+        SKU.Create(currency: Currency.JPY,
+                   inventory: SKU.Inventory(type: .finite, quantity: 10),
+                   price: 1000,
+                   product: "prod_BbpySqJvKNasSP").send({ (result) in
+                    switch result {
+                    case .success(let response):
+                        print(response)
+                        XCTAssertNotNil(response)
+                        expectation.fulfill()
+                    case .failure(let error): print(error)
+                    }
+                   })
+        self.wait(for: [expectation], timeout: 5)
+    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.

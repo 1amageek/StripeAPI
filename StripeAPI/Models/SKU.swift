@@ -47,6 +47,7 @@ public struct SKU: StripeModel, ListProtocol {
 
     // MARK: -
 
+    /// Description of the SKU’s inventory.
     public struct Inventory: Codable {
 
         public enum InventoryType: String, Codable {
@@ -61,17 +62,19 @@ public struct SKU: StripeModel, ListProtocol {
             case inStock = "in_stock"
         }
 
-        public let quantity: Int?
-        public let type: InventoryType
-        public let value: BucketValue?
-    }
+        public init(type: InventoryType, quantity: Int) {
+            self.type = type
+            self.quantity = quantity
+        }
 
-    public struct PackageDimensions: Codable {
+        /// The count of inventory available. Will be present if and only if type is finite.
+        public var quantity: Int?
 
-        public let height: Float
-        public let length: Float
-        public let weight: Float
-        public let width: Float
+        /// Inventory type. Possible values are finite, bucket (not quantified), and infinite.
+        public var type: InventoryType
+
+        /// An indicator of the inventory available. Possible values are in_stock, limited, and out_of_stock. Will be present if and only if type is bucket.
+        public var value: BucketValue?
     }
 }
 
@@ -89,7 +92,7 @@ extension SKU {
 
         public var _parameters: Any?
 
-        public init(currency: Currency, inventory: Inventory, price: Double, product: Product) {
+        public init(currency: Currency, inventory: Inventory, price: Double, product: String) {
             self._parameters = Parameters(currency: currency, inventory: inventory, price: price, product: product)
         }
 
@@ -112,7 +115,7 @@ extension SKU {
                 case packageDimensions = "package_dimensions"
             }
 
-            public init(currency: Currency, inventory: Inventory, price: Double, product: Product) {
+            public init(currency: Currency, inventory: Inventory, price: Double, product: String) {
                 self.currency = currency
                 self.inventory = inventory
                 self.price = price
@@ -123,7 +126,7 @@ extension SKU {
             public var currency: Currency
             public var inventory: Inventory
             public var price: Double
-            public var product: Product
+            public var product: String
             public var active: Bool? = nil
             public var attributes: [String: String]? = nil
             public var image: String? = nil
@@ -178,7 +181,7 @@ extension SKU {
                 case product
             }
 
-            public init(currency: Currency, inventory: Inventory, price: Double, product: Product) {
+            public init(currency: Currency, inventory: Inventory, price: Double, product: String) {
                 self.currency = currency
                 self.inventory = inventory
                 self.price = price
@@ -193,7 +196,7 @@ extension SKU {
             public var metadata: [String: String]? = nil
             public var packageDimensions: PackageDimensions? = nil
             public var price: Double? = nil
-            public var product: Product? = nil
+            public var product: String? = nil
         }
     }
 
