@@ -9,7 +9,7 @@
 import Foundation
 import APIKit
 
-public struct SKU: StripeModel {
+public struct SKU: StripeModel, ListProtocol {
 
     public static var path: String { return "/skus"}
 
@@ -44,6 +44,35 @@ public struct SKU: StripeModel {
     public let price: Int
     public let product: String
     public let updated: TimeInterval
+
+    // MARK: -
+
+    public struct Inventory: Codable {
+
+        public enum InventoryType: String, Codable {
+            case finite
+            case bucket
+            case infinite
+        }
+
+        public enum BucketValue: String, Codable {
+            case limited
+            case outOfStock = "out_of_stock"
+            case inStock = "in_stock"
+        }
+
+        public let quantity: Int?
+        public let type: InventoryType
+        public let value: BucketValue?
+    }
+
+    public struct PackageDimensions: Codable {
+
+        public let height: Float
+        public let length: Float
+        public let weight: Float
+        public let width: Float
+    }
 }
 
 extension SKU {
@@ -52,16 +81,16 @@ extension SKU {
 
     public struct Create: StripeParametersAPI {
 
-        public typealias Response = Customer
+        public typealias Response = SKU
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return Customer.path }
+        public var path: String { return SKU.path }
 
         public var _parameters: Any?
 
-        public init() {
-            self._parameters = Parameters()
+        public init(currency: Currency, inventory: Inventory, price: Double, product: Product) {
+            self._parameters = Parameters(currency: currency, inventory: inventory, price: price, product: product)
         }
 
         public init(parameters: Parameters) {
@@ -71,26 +100,35 @@ extension SKU {
         public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
-                case accountBalance
-                case businessVatID
-                case coupon
-                case defaultSource
-                case description
-                case email
+                case id
+                case currency
+                case inventory
+                case price
+                case product
+                case active
+                case attributes
+                case image
                 case metadata
-                case shipping
-                case source
+                case packageDimensions = "package_dimensions"
             }
 
-            public var accountBalance: Int? = nil
-            public var businessVatID: String? = nil
-            public var coupon: Coupon? = nil
-            public var defaultSource: String? = nil
-            public var description: String? = nil
-            public var email: String? = nil
+            public init(currency: Currency, inventory: Inventory, price: Double, product: Product) {
+                self.currency = currency
+                self.inventory = inventory
+                self.price = price
+                self.product = product
+            }
+
+            public var id: String? = nil
+            public var currency: Currency
+            public var inventory: Inventory
+            public var price: Double
+            public var product: Product
+            public var active: Bool? = nil
+            public var attributes: [String: String]? = nil
+            public var image: String? = nil
             public var metadata: [String: String]? = nil
-            public var shipping: Shipping? = nil
-            public var source: Source? = nil
+            public var packageDimensions: PackageDimensions? = nil
         }
     }
 
@@ -102,7 +140,7 @@ extension SKU {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "\(Customer.path)/\(id)" }
+        public var path: String { return "\(SKU.path)/\(id)" }
 
         public let id: String
     }
@@ -111,11 +149,11 @@ extension SKU {
 
     public struct Update: StripeParametersAPI {
 
-        public typealias Response = Customer
+        public typealias Response = SKU
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "\(Customer.path)/\(id)" }
+        public var path: String { return "\(SKU.path)/\(id)" }
 
         public let id: String
 
@@ -129,26 +167,33 @@ extension SKU {
         public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
-                case accountBalance
-                case businessVatID
-                case coupon
-                case defaultSource
-                case description
-                case email
+                case active
+                case attributes
+                case currency
+                case image
+                case inventory
                 case metadata
-                case shipping
-                case source
+                case packageDimensions = "package_dimensions"
+                case price
+                case product
             }
 
-            public var accountBalance: Int? = nil
-            public var businessVatID: String? = nil
-            public var coupon: Coupon? = nil
-            public var defaultSource: String? = nil
-            public var description: String? = nil
-            public var email: String? = nil
+            public init(currency: Currency, inventory: Inventory, price: Double, product: Product) {
+                self.currency = currency
+                self.inventory = inventory
+                self.price = price
+                self.product = product
+            }
+
+            public var active: Bool? = nil
+            public var attributes: [String: String]? = nil
+            public var currency: Currency? = nil
+            public var image: String? = nil
+            public var inventory: Inventory? = nil
             public var metadata: [String: String]? = nil
-            public var shipping: Shipping? = nil
-            public var source: Source? = nil
+            public var packageDimensions: PackageDimensions? = nil
+            public var price: Double? = nil
+            public var product: Product? = nil
         }
     }
 
@@ -158,7 +203,7 @@ extension SKU {
 
         public var method: HTTPMethod { return .delete }
 
-        public var path: String { return "\(Customer.path)/\(id)" }
+        public var path: String { return "\(SKU.path)/\(id)" }
 
         public let id: String
 
