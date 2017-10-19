@@ -62,14 +62,14 @@ extension Refund {
         public var _parameters: Any?
 
         public init(charge: String) {
-            self._parameters = Paramaters(charge: charge)
+            self._parameters = Parameters(charge: charge)
         }
 
-        public init(parameters: Paramaters) {
+        public init(parameters: Parameters) {
             self._parameters = parameters
         }
 
-        public struct Paramaters: Codable {
+        public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
                 case charge
@@ -86,12 +86,16 @@ extension Refund {
                 case requestedByCustomer = "requested_by_customer"
             }
 
+            public init(charge: String) {
+                self.charge = charge
+            }
+
             public let charge: String
-            public let amount: Int? = nil
-            public let metadata: [String: String]? = nil
-            public let reason: Reason? = nil
-            public let refundApplicationFee: Bool? = nil
-            public let reverseTransfer: Bool? = nil
+            public var amount: Int? = nil
+            public var metadata: [String: String]? = nil
+            public var reason: Reason? = nil
+            public var refundApplicationFee: Bool? = nil
+            public var reverseTransfer: Bool? = nil
         }
     }
 
@@ -103,7 +107,7 @@ extension Refund {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "/\(Refund.path)/\(id)" }
+        public var path: String { return "\(Refund.path)/\(id)" }
 
         public let id: String
     }
@@ -116,7 +120,7 @@ extension Refund {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/\(Refund.path)/\(id)" }
+        public var path: String { return "\(Refund.path)/\(id)" }
 
         public let id: String
 
@@ -127,8 +131,8 @@ extension Refund {
             self._parameters = parameters
         }
 
-        public struct Paramaters: Codable {
-            public let metadata: [String: String]? = nil
+        public struct Parameters: Codable {
+            public var metadata: [String: String]? = nil
         }
     }
 }

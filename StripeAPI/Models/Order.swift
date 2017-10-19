@@ -90,14 +90,14 @@ extension Order {
         public var _parameters: Any?
 
         public init(currentcy: Currency) {
-            self._parameters = Paramaters(currency: currentcy)
+            self._parameters = Parameters(currency: currentcy)
         }
 
-        public init(parameters: Paramaters) {
+        public init(parameters: Parameters) {
             self._parameters = parameters
         }
 
-        public struct Paramaters: Codable {
+        public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
                 case currency
@@ -127,7 +127,7 @@ extension Order {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "/\(Order.path)/\(id)" }
+        public var path: String { return "\(Order.path)/\(id)" }
 
         public let id: String
     }
@@ -140,7 +140,7 @@ extension Order {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/\(Order.path)/\(id)" }
+        public var path: String { return "\(Order.path)/\(id)" }
 
         public let id: String
 
@@ -151,7 +151,7 @@ extension Order {
             self._parameters = parameters
         }
 
-        public struct Paramaters: Codable {
+        public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
                 case coupon
@@ -171,13 +171,13 @@ extension Order {
 
     // MARK: - Pay
 
-    public struct Pay: StripeAPI {
+    public struct Pay: StripeParametersAPI {
 
         public typealias Response = Order
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/\(Order.path)/\(id)/pay" }
+        public var path: String { return "\(Order.path)/\(id)/pay" }
 
         public var _parameters: Any?
 
@@ -185,12 +185,12 @@ extension Order {
 
         public init(id: String, customer: String) {
             self.id = id
-            self._parameters = Paramaters(customer: customer)
+            self._parameters = Parameters(customer: customer)
         }
 
         public init(id: String, source: String, email: String) {
             self.id = id
-            self._parameters = Paramaters(source: source, email: email)
+            self._parameters = Parameters(source: source, email: email)
         }
 
         public init(id: String, parameters: Parameters) {
@@ -198,7 +198,7 @@ extension Order {
             self._parameters = parameters
         }
 
-        public struct Paramaters: Codable {
+        public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
                 case customer
@@ -233,15 +233,15 @@ extension Order {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/\(Order.path)/\(id)/return" }
+        public var path: String { return "\(Order.path)/\(id)/return" }
 
         public var _parameters: Any?
 
         public let id: String
 
-        public init(id: String, items: [Paramaters.Item]) {
+        public init(id: String, items: [Parameters.Item]) {
             self.id = id
-            self._parameters = Paramaters(items: items)
+            self._parameters = Parameters(items: items)
         }
 
         public init(id: String, parameters: Parameters) {
@@ -249,7 +249,7 @@ extension Order {
             self._parameters = parameters
         }
 
-        public struct Paramaters: Codable {
+        public struct Parameters: Codable {
 
             public struct Item: Codable {
 

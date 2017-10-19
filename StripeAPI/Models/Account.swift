@@ -28,7 +28,7 @@ public struct Account: StripeModel, ListProtocol {
         case detailsSubmitted = "details_submitted"
         case displayName = "display_name"
         case email
-        case externalAccount = "external_account"
+        case externalAccount = "external_accounts"
         case legalEntity = "legal_entity"
         case metadata
         case payoutSchedule = "payout_schedule"
@@ -44,6 +44,36 @@ public struct Account: StripeModel, ListProtocol {
         case verification
     }
 
+    public let id: String
+    public let object: String
+    public let businessLogo: String?
+    public let businessName: String?
+    public let businessUrl: String?
+    public let chargesEnabled: Bool?
+    public let country: String?
+    public let debitNegativeBalances: Bool
+    public let declineChargeOn: DeclineChargeOn
+    public let defaultCurrency: Currency
+    public let detailsSubmitted: Bool
+    public let displayName: String?
+    public let email: String?
+    public let externalAccount: List<BankAccount>
+    public let legalEntity: LegalEntity
+    public let metadata: [String: String]?
+    public let payoutSchedule: PayoutSchedule
+    public let payoutStatementDescriptor: String?
+    public let payoutsEnabled: Bool
+    public let productDescription: String?
+    public let statementDescriptor: String
+    public let supportEmail: String?
+    public let supportPhone: String?
+    public let timezone: String
+    public let tosAcceptance: TosAcceptance
+    public let type: AccountType
+    public let verification: Verification
+
+    // MARK: -
+
     public struct DeclineChargeOn: Codable {
 
         private enum CodingKeys: String, CodingKey {
@@ -58,8 +88,8 @@ public struct Account: StripeModel, ListProtocol {
     public struct LegalEntity: Codable {
 
         private enum CodingKeys: String, CodingKey {
-            case additional_owners = "avs_failure"
-            case address = "cvc_failure"
+            case additionalOwners = "additional_owners"
+            case address = "address"
             case addressKana = "address_kana"
             case addressKanji = "address_kanji"
             case businessName = "business_name"
@@ -88,9 +118,9 @@ public struct Account: StripeModel, ListProtocol {
         }
 
         public struct Dob: Codable {
-            public let day: Int
-            public let month: Int
-            public let year: Int
+            public let day: Int?
+            public let month: Int?
+            public let year: Int?
         }
 
         public enum LegalEntityType: String, Codable {
@@ -119,7 +149,7 @@ public struct Account: StripeModel, ListProtocol {
             public let status: Status
         }
 
-        public let additional_owners: List<LegalEntity>
+        public let additionalOwners: [LegalEntity]
         public let address: Address
         public let addressKana: Address.Kana?
         public let addressKanji: Address.Kana?
@@ -137,14 +167,14 @@ public struct Account: StripeModel, ListProtocol {
         public let lastNameKana: String?
         public let lastNameKanji: String?
         public let maidenName: String?
-        public let personalAddress: String?
-        public let personalAddressKana: String?
-        public let personalAddressKanji: String?
+        public let personalAddress: Address?
+        public let personalAddressKana: Address.Kana?
+        public let personalAddressKanji: Address.Kana?
         public let personalIdNumberProvided: Bool?
         public let phoneNumber: String?
         public let ssnLast4Provided: Bool?
         public let taxIdRegistrar: String?
-        public let type: LegalEntityType
+        public let type: LegalEntityType?
         public let verification: Verification
     }
 
@@ -164,10 +194,10 @@ public struct Account: StripeModel, ListProtocol {
             case monthly
         }
 
-        public let delayDays: Int
+        public let delayDays: Int?
         public let interval: Interval
-        public let monthlyAnchor: Int
-        public let weeklyAnchor: String
+        public let monthlyAnchor: Int?
+        public let weeklyAnchor: String?
     }
 
     public struct TosAcceptance: Codable {
@@ -178,8 +208,8 @@ public struct Account: StripeModel, ListProtocol {
             case userAgent = "user_agent"
         }
 
-        public let date: TimeInterval
-        public let ip: String
+        public let date: TimeInterval?
+        public let ip: String?
         public let userAgent: String?
     }
 
@@ -212,34 +242,6 @@ public struct Account: StripeModel, ListProtocol {
         public let dueBy: TimeInterval?
         public let fieldsNeeded: [String]
     }
-
-    public let id: String
-    public let object: String
-    public let businessLogo: String?
-    public let businessName: String?
-    public let businessUrl: String?
-    public let chargesEnabled: Bool?
-    public let country: String?
-    public let debitNegativeBalances: Bool
-    public let declineChargeOn: DeclineChargeOn
-    public let defaultCurrency: Currency
-    public let detailsSubmitted: Bool
-    public let displayName: String?
-    public let email: String?
-    public let externalAccount: List<BankAccount>
-    public let legalEntity: LegalEntity
-    public let metadata: [String: String]?
-    public let payoutSchedule: PayoutSchedule
-    public let payoutStatementDescriptor: String
-    public let payoutsEnabled: Bool
-    public let productDescription: String
-    public let statementDescriptor: String
-    public let supportEmail: String
-    public let supportPhone: String
-    public let timezone: String
-    public let tosAcceptance: TosAcceptance
-    public let type: AccountType
-    public let verification: Verification
 }
 
 extension Account {
@@ -257,14 +259,14 @@ extension Account {
         public var _parameters: Any?
 
         public init(type: AccountType, email: String?, country: String?) {
-            self._parameters = Paramaters(type: type, email: email, country: country)
+            self._parameters = Parameters(type: type, email: email, country: country)
         }
 
-        public init(parameters: Paramaters) {
+        public init(parameters: Parameters) {
             self._parameters = parameters
         }
 
-        public struct Paramaters: Codable {
+        public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
                 case country
@@ -292,7 +294,7 @@ extension Account {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "/\(Account.path)/\(id)" }
+        public var path: String { return "\(Account.path)/\(id)" }
 
         public let id: String
     }
@@ -305,7 +307,7 @@ extension Account {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/\(Account.path)/\(id)" }
+        public var path: String { return "\(Account.path)/\(id)" }
 
         public let id: String
 
@@ -339,24 +341,24 @@ extension Account {
                 case tosAcceptance = "tos_acceptance"
             }
 
-            public let businessLogo: String? = nil
-            public let businessName: String? = nil
-            public let businessPrimaryColor: String? = nil
-            public let businessUrl: String? = nil
-            public let debitNegativeBalances: Bool? = nil
-            public let declineChargeOn: DeclineChargeOn? = nil
-            public let defaultCurrency: Currency? = nil
-            public let email: String? = nil
-            public let externalAccount: List<BankAccount>? = nil
-            public let legalEntity: LegalEntity? = nil
-            public let metadata: [String: String]? = nil
-            public let payoutSchedule: PayoutSchedule? = nil
-            public let payoutStatementDescriptor: String? = nil
-            public let productDescription: String? = nil
-            public let statementDescriptor: String? = nil
-            public let supportEmail: String? = nil
-            public let supportPhone: String? = nil
-            public let tosAcceptance: TosAcceptance? = nil
+            public var businessLogo: String? = nil
+            public var businessName: String? = nil
+            public var businessPrimaryColor: String? = nil
+            public var businessUrl: String? = nil
+            public var debitNegativeBalances: Bool? = nil
+            public var declineChargeOn: DeclineChargeOn? = nil
+            public var defaultCurrency: Currency? = nil
+            public var email: String? = nil
+            public var externalAccount: List<BankAccount>? = nil
+            public var legalEntity: LegalEntity? = nil
+            public var metadata: [String: String]? = nil
+            public var payoutSchedule: PayoutSchedule? = nil
+            public var payoutStatementDescriptor: String? = nil
+            public var productDescription: String? = nil
+            public var statementDescriptor: String? = nil
+            public var supportEmail: String? = nil
+            public var supportPhone: String? = nil
+            public var tosAcceptance: TosAcceptance? = nil
         }
     }
 
@@ -366,7 +368,7 @@ extension Account {
 
         public var method: HTTPMethod { return .delete }
 
-        public var path: String { return "/\(Account.path)/\(id)" }
+        public var path: String { return "\(Account.path)/\(id)" }
 
         public let id: String
 
@@ -384,7 +386,7 @@ extension Account {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/\(Account.path)/\(id)/reject" }
+        public var path: String { return "\(Account.path)/\(id)/reject" }
 
         public let id: String
 
@@ -407,7 +409,7 @@ extension Account {
         }
 
         public struct Parameters: Codable {
-            public let  reason: Reason
+            public var reason: Reason
         }
     }
 }

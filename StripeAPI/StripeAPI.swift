@@ -27,39 +27,6 @@ public protocol ListProtocol {
     static var path: String { get }
 }
 
-public protocol ParametersProtocol {
-
-    var _parameters: Any? { get set }
-}
-
-public typealias StripeParametersAPI = ParametersProtocol & StripeAPI
-
-public extension StripeAPI where Parameters: Encodable, Self: ParametersProtocol {
-
-    public var parameters: Any? { return _parameters }
-
-    public var bodyParameters: BodyParameters? {
-        guard let parameters = self.parameters as? Parameters else  {
-            return nil
-        }
-        let data: Data = try! JSONEncoder().encode(parameters)
-        let json: [String: Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-        return FormURLEncodedBodyParameters(formObject: json)
-    }
-}
-
-extension StripeAPI where Response: Decodable {
-    public func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
-        guard let data: Data = object as? Data else {
-            throw ResponseError.unexpectedObject(object)
-        }
-        if let string = String(data: data, encoding: .utf8) {
-            print("response: \(string)")
-        }
-        return try JSONDecoder().decode(Response.self, from: data)
-    }
-}
-
 extension StripeAPI {
 
     public var baseURL: URL {
@@ -96,6 +63,41 @@ extension StripeAPI {
     }
 }
 
+// MARK: -
+
+public protocol ParametersProtocol {
+
+    var _parameters: Any? { get set }
+}
+
+public typealias StripeParametersAPI = ParametersProtocol & StripeAPI
+
+public extension StripeAPI where Parameters: Encodable, Self: ParametersProtocol {
+
+    public var parameters: Any? { return _parameters }
+
+    public var bodyParameters: BodyParameters? {
+        guard let parameters = self.parameters as? Parameters else  {
+            return nil
+        }
+        let data: Data = try! JSONEncoder().encode(parameters)
+        let json: [String: Any] = try! JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
+        return FormURLEncodedBodyParameters(formObject: json)
+    }
+}
+
+extension StripeAPI where Response: Decodable {
+    public func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+        guard let data: Data = object as? Data else {
+            throw ResponseError.unexpectedObject(object)
+        }
+        if let string = String(data: data, encoding: .utf8) {
+            print("response: \(string)")
+        }
+        return try JSONDecoder().decode(Response.self, from: data)
+    }
+}
+
 final class DecodableDataParser: DataParser {
     var contentType: String? {
         return "application/json"
@@ -104,4 +106,36 @@ final class DecodableDataParser: DataParser {
     func parse(data: Data) throws -> Any {
         return data
     }
+}
+
+extension StripeAPI {
+//    public func intercept(urlRequest: URLRequest) throws -> URLRequest {
+//        var urlRequest = urlRequest
+//        urlRequest.timeoutInterval = 10.0
+//
+//        print("requestURL: \(urlRequest)")
+//        print("requestHeader: \(urlRequest.allHTTPHeaderFields!)")
+//        print("requestBody: \(String(data: urlRequest.httpBody ?? Data(), encoding: .utf8).debugDescription)")
+//        return urlRequest
+//    }
+//
+//    public func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
+//        print("raw response header: \(urlResponse)")
+//        print("raw response header: \(urlResponse.allHeaderFields)")
+//        print("raw response body: \(object)")
+//
+//        if let data: Data = object as? Data {
+////            let json = try! JSONSerialization.data(withJSONObject: data, options: [])
+////            print("raw response body", json)
+//            print("raw response body: \(String(data: data ?? Data(), encoding: .utf8).debugDescription)")
+//        }
+//
+//        switch urlResponse.statusCode {
+//        case 200..<300:
+//            return object
+//
+//        default:
+//            throw ResponseError.unacceptableStatusCode(urlResponse.statusCode)
+//        }
+//    }
 }

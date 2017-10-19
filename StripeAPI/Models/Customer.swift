@@ -64,14 +64,14 @@ extension Customer {
         public var _parameters: Any?
 
         public init() {
-            self._parameters = Paramaters()
+            self._parameters = Parameters()
         }
 
-        public init(parameters: Paramaters) {
+        public init(parameters: Parameters) {
             self._parameters = parameters
         }
 
-        public struct Paramaters: Codable {
+        public struct Parameters: Codable {
             
             private enum CodingKeys: String, CodingKey {
                 case accountBalance
@@ -105,7 +105,7 @@ extension Customer {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "/\(Customer.path)/\(id)" }
+        public var path: String { return "\(Customer.path)/\(id)" }
 
         public let id: String
     }
@@ -118,7 +118,7 @@ extension Customer {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "/\(Customer.path)/\(id)" }
+        public var path: String { return "\(Customer.path)/\(id)" }
 
         public let id: String
 
@@ -161,7 +161,7 @@ extension Customer {
 
         public var method: HTTPMethod { return .delete }
 
-        public var path: String { return "/\(Customer.path)/\(id)" }
+        public var path: String { return "\(Customer.path)/\(id)" }
 
         public let id: String
 

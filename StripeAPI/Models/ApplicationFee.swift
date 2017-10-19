@@ -14,7 +14,6 @@ public struct ApplicationFee: StripeModel, ListProtocol {
     public static var path: String { return "/application_fees"}
 
     private enum CodingKeys: String, CodingKey {
-
         case id
         case object
         case account
@@ -57,7 +56,7 @@ extension ApplicationFee {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "/\(ApplicationFee.path)/\(id)" }
+        public var path: String { return "\(ApplicationFee.path)/\(id)" }
 
         public let id: String
     }
