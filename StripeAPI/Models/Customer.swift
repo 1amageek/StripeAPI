@@ -8,7 +8,6 @@
 
 import Foundation
 import APIKit
-import Stripe
 
 public struct Customer: StripeModel, ListProtocol {
 

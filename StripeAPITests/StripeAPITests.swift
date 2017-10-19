@@ -90,7 +90,7 @@ class StripeAPITests: XCTestCase {
                                     case .success(let response):
                                         XCTAssertNotNil(response)
                                         XCTAssertEqual(response.id, id)
-                                        XCTAssertEqual(response.verification.disabledReason, "rejected.fraud")
+                                        XCTAssertEqual(response.verification.disabledReason!.rawValue, "rejected.fraud")
                                         Account.Delete(id: id).send({ (result) in
                                             switch result {
                                             case .success(let response):
