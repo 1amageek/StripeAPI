@@ -80,25 +80,33 @@ class StripeAPITests: XCTestCase {
                         let email: String = "sample@sample.com"
                         var parameters: Account.Update.Parameters = Account.Update.Parameters()
                         parameters.email = email
-                        expectation.fulfill()
-//                        Account.Update(id: id, parameters: parameters).send({ (result) in
-//                            switch result {
-//                            case .success(let response):
-//                                XCTAssertEqual(response.id, id)
-//                                XCTAssertEqual(response.email, email)
-//                                Account.Delete(id: id).send({ (result) in
-//                                    switch result {
-//                                    case .success(let response):
-//                                        XCTAssertNotNil(response)
-//                                        XCTAssertEqual(response.id, id)
-//                                        XCTAssertEqual(response.deleted, true)
-//                                        expectation.fulfill()
-//                                    case .failure(let error): print(error)
-//                                    }
-//                                })
-//                            case .failure(let error): print(error)
-//                            }
-//                        })
+                        Account.Update(id: id, parameters: parameters).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                XCTAssertEqual(response.id, id)
+                                XCTAssertEqual(response.email, email)
+                                Account.Reject(id: id, reason: Account.Reject.Reason.fraud).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        XCTAssertEqual(response.id, id)
+                                        XCTAssertEqual(response.verification.disabledReason, "rejected.fraud")
+                                        Account.Delete(id: id).send({ (result) in
+                                            switch result {
+                                            case .success(let response):
+                                                XCTAssertNotNil(response)
+                                                XCTAssertEqual(response.id, id)
+                                                XCTAssertEqual(response.deleted, true)
+                                                expectation.fulfill()
+                                            case .failure(let error): print(error)
+                                            }
+                                        })
+                                    case .failure(let error): print(error)
+                                    }
+                                })
+                            case .failure(let error): print(error)
+                            }
+                        })
                     case .failure(let error): print(error)
                     }
                 })
@@ -108,19 +116,19 @@ class StripeAPITests: XCTestCase {
         self.wait(for: [expectation], timeout: 5)
     }
 
-    func testTestModel() {
-        let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")
-        Account.Retrieve(id: "acct_1BEaYWCe1UurMn4Q").send { (result) in
-            switch result {
-            case .success(let response):
-                print(response)
-            case .failure(let error):
-                print(error)
-            }
-            expectation.fulfill()
-        }
-        self.wait(for: [expectation], timeout: 5)
-    }
+//    func testTestModel() {
+//        let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")
+//        Account.Retrieve(id: "acct_1BEaYWCe1UurMn4Q").send { (result) in
+//            switch result {
+//            case .success(let response):
+//                print(response)
+//            case .failure(let error):
+//                print(error)
+//            }
+//            expectation.fulfill()
+//        }
+//        self.wait(for: [expectation], timeout: 5)
+//    }
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
