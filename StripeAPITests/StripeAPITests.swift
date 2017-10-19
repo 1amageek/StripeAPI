@@ -23,48 +23,48 @@ class StripeAPITests: XCTestCase {
         super.tearDown()
     }
     
-//    func testCustomer() {
-//        let expectation: XCTestExpectation = XCTestExpectation(description: "Customer")
-//        Customer.Create().send { (result) in
-//            switch result {
-//            case .success(let response):
-//                print(response)
-//                XCTAssertNotNil(response)
-//                let id: String = response.id
-//                Customer.Retrieve(id: id).send({ (result) in
-//                    switch result {
-//                    case .success(let response):
-//                        XCTAssertEqual(response.id, id)
-//                        let email: String = "sample@sample.com"
-//                        var parameters: Customer.Update.Parameters = Customer.Update.Parameters()
-//                        parameters.email = email
-//                        Customer.Update(id: id, parameters: parameters).send({ (result) in
-//                            switch result {
-//                            case .success(let response):
-//                                XCTAssertEqual(response.id, id)
-//                                XCTAssertEqual(response.email, email)
-//                                Customer.Delete(id: id).send({ (result) in
-//                                    switch result {
-//                                    case .success(let response):
-//                                        XCTAssertNotNil(response)
-//                                        XCTAssertEqual(response.id, id)
-//                                        XCTAssertEqual(response.deleted, true)
-//                                        expectation.fulfill()
-//                                    case .failure(let error): print(error)
-//                                    }
-//                                })
-//                            case .failure(let error): print(error)
-//                            }
-//                        })
-//                    case .failure(let error): print(error)
-//                    }
-//                })
-//            case .failure(let error): print(error)
-//            }
-//        }
-//        self.wait(for: [expectation], timeout: 5)
-//    }
-//
+    func testCustomer() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Customer")
+        Customer.Create().send { (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+                XCTAssertNotNil(response)
+                let id: String = response.id
+                Customer.Retrieve(id: id).send({ (result) in
+                    switch result {
+                    case .success(let response):
+                        XCTAssertEqual(response.id, id)
+                        let email: String = "sample@sample.com"
+                        var parameters: Customer.Update.Parameters = Customer.Update.Parameters()
+                        parameters.email = email
+                        Customer.Update(id: id, parameters: parameters).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                XCTAssertEqual(response.id, id)
+                                XCTAssertEqual(response.email, email)
+                                Customer.Delete(id: id).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        XCTAssertEqual(response.id, id)
+                                        XCTAssertEqual(response.deleted, true)
+                                        expectation.fulfill()
+                                    case .failure(let error): print(error)
+                                    }
+                                })
+                            case .failure(let error): print(error)
+                            }
+                        })
+                    case .failure(let error): print(error)
+                    }
+                })
+            case .failure(let error): print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 5)
+    }
+
     func testAccount() {
         let expectation: XCTestExpectation = XCTestExpectation(description: "Account")
         Account.Create(type: .custom, email: nil, country: Locale.current.regionCode).send { (result) in
