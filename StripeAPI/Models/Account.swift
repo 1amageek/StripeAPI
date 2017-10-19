@@ -15,7 +15,6 @@ public struct Account: StripeModel, ListProtocol {
     public static var path: String { return "/accounts"}
 
     private enum CodingKeys: String, CodingKey {
-
         case id
         case object
         case businessLogo = "business_logo"
@@ -284,78 +283,131 @@ extension Account {
             public var type: AccountType
         }
     }
-    // FIXME: ここから
-//    // MARK: - Retrieve
-//
-//    public struct Retrieve: StripeAPI {
-//
-//        public typealias Response = Account
-//
-//        public var method: HTTPMethod { return .get }
-//
-//        public var path: String { return "/\(Account.path)/\(id)" }
-//
-//        public let id: String
-//    }
-//
-//    // MARK: - Update
-//
-//    public struct Update: StripeParametersAPI {
-//
-//        public typealias Response = Account
-//
-//        public var method: HTTPMethod { return .post }
-//
-//        public var path: String { return "/\(Account.path)/\(id)" }
-//
-//        public let id: String
-//
-//        public var _parameters: Any?
-//
-//        public init(id: String, parameters: Parameters) {
-//            self.id = id
-//            self._parameters = parameters
-//        }
-//
-//        public struct Parameters: Codable {
-//
-//            private enum CodingKeys: String, CodingKey {
-//                case accountBalance
-//                case businessVatID
-//                case coupon
-//                case defaultSource
-//                case description
-//                case email
-//                case metadata
-//                case shipping
-//                case source
-//            }
-//
-//            public var accountBalance: Int? = nil
-//            public var businessVatID: String? = nil
-//            public var coupon: Coupon? = nil
-//            public var defaultSource: String? = nil
-//            public var description: String? = nil
-//            public var email: String? = nil
-//            public var metadata: [String: String]? = nil
-//            public var shipping: Shipping? = nil
-//            public var source: Source? = nil
-//        }
-//    }
-//
-//    // MARK: - Delete
-//
-//    public struct Delete: StripeAPI {
-//
-//        public var method: HTTPMethod { return .delete }
-//
-//        public var path: String { return "/\(Account.path)/\(id)" }
-//
-//        public let id: String
-//
-//        public struct Response: Codable {
-//            public let deleted: Bool
-//            public let id: String
-//        }
-//    }
+
+    // MARK: - Retrieve
+
+    public struct Retrieve: StripeAPI {
+
+        public typealias Response = Account
+
+        public var method: HTTPMethod { return .get }
+
+        public var path: String { return "/\(Account.path)/\(id)" }
+
+        public let id: String
+    }
+
+    // MARK: - Update
+
+    public struct Update: StripeParametersAPI {
+
+        public typealias Response = Account
+
+        public var method: HTTPMethod { return .post }
+
+        public var path: String { return "/\(Account.path)/\(id)" }
+
+        public let id: String
+
+        public var _parameters: Any?
+
+        public init(id: String, parameters: Parameters) {
+            self.id = id
+            self._parameters = parameters
+        }
+
+        public struct Parameters: Codable {
+
+            private enum CodingKeys: String, CodingKey {
+                case businessLogo = "business_logo"
+                case businessName = "business_name"
+                case businessPrimaryColor = "business_primary_color"
+                case businessUrl = "business_url"
+                case debitNegativeBalances = "debit_negative_balances"
+                case declineChargeOn = "decline_charge_on"
+                case defaultCurrency = "default_currency"
+                case email
+                case externalAccount = "external_account"
+                case legalEntity = "legal_entity"
+                case metadata
+                case payoutSchedule = "payout_schedule"
+                case payoutStatementDescriptor = "payout_statement_descriptor"
+                case productDescription = "product_description"
+                case statementDescriptor = "statement_descriptor"
+                case supportEmail = "support_email"
+                case supportPhone = "support_phone"
+                case tosAcceptance = "tos_acceptance"
+            }
+
+            public let businessLogo: String? = nil
+            public let businessName: String? = nil
+            public let businessPrimaryColor: String? = nil
+            public let businessUrl: String? = nil
+            public let debitNegativeBalances: Bool? = nil
+            public let declineChargeOn: DeclineChargeOn? = nil
+            public let defaultCurrency: Currency? = nil
+            public let email: String? = nil
+            public let externalAccount: List<BankAccount>? = nil
+            public let legalEntity: LegalEntity? = nil
+            public let metadata: [String: String]? = nil
+            public let payoutSchedule: PayoutSchedule? = nil
+            public let payoutStatementDescriptor: String? = nil
+            public let productDescription: String? = nil
+            public let statementDescriptor: String? = nil
+            public let supportEmail: String? = nil
+            public let supportPhone: String? = nil
+            public let tosAcceptance: TosAcceptance? = nil
+        }
+    }
+
+    // MARK: - Delete
+
+    public struct Delete: StripeAPI {
+
+        public var method: HTTPMethod { return .delete }
+
+        public var path: String { return "/\(Account.path)/\(id)" }
+
+        public let id: String
+
+        public struct Response: Codable {
+            public let deleted: Bool
+            public let id: String
+        }
+    }
+
+    // MARK: - Reject
+
+    public struct Reject: StripeParametersAPI {
+
+        public typealias Response = Account
+
+        public var method: HTTPMethod { return .post }
+
+        public var path: String { return "/\(Account.path)/\(id)/reject" }
+
+        public let id: String
+
+        public var _parameters: Any?
+
+        public init(id: String, reason: Reason) {
+            self.id = id
+            self._parameters = Parameters(reason: reason)
+        }
+
+        public init(id: String, parameters: Parameters) {
+            self.id = id
+            self._parameters = parameters
+        }
+
+        public enum Reason: String, Codable {
+            case fraud
+            case termsOfService = "terms_of_service"
+            case other
+        }
+
+        public struct Parameters: Codable {
+            public let  reason: Reason
+        }
+    }
 }
