@@ -174,9 +174,29 @@ class StripeAPITests: XCTestCase {
                            product: id).send({ (result) in
                             switch result {
                             case .success(let response):
-                                print(response)
                                 XCTAssertNotNil(response)
-                                expectation.fulfill()
+                                var parameters: SKU.Update.Parameters = SKU.Update.Parameters()
+                                let id: String = response.id
+                                let price: Double = 10000
+                                parameters.price = price
+                                SKU.Update(id: id, parameters: parameters).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        XCTAssertEqual(response.price, price)
+                                        SKU.Delete(id: id).send({ (result) in
+                                            switch result {
+                                            case .success(let response):
+                                                XCTAssertNotNil(response)
+                                                XCTAssertEqual(response.id, id)
+                                                XCTAssertEqual(response.deleted, true)
+                                                expectation.fulfill()
+                                            case .failure(let error): print(error)
+                                            }
+                                        })
+                                    case .failure(let error): print(error)
+                                    }
+                                })
                             case .failure(let error): print(error)
                             }
                            })
@@ -184,7 +204,7 @@ class StripeAPITests: XCTestCase {
                 print(error)
             }
         }
-        self.wait(for: [expectation], timeout: 5)
+        self.wait(for: [expectation], timeout: 8)
     }
 
     func testTestModel() {

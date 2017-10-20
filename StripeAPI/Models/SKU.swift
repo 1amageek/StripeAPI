@@ -35,13 +35,13 @@ public struct SKU: StripeModel, ListProtocol {
     public let active: Bool
     public let attributes: [String: String]
     public let created: TimeInterval
-    public let currency: String
+    public let currency: Currency
     public let image: URL?
     public let inventory: Inventory
     public let livemode: Bool
     public let metadata: [String: String]
     public let packageDimensions: PackageDimensions?
-    public let price: Int
+    public let price: Double
     public let product: String
     public let updated: TimeInterval
 
@@ -179,13 +179,6 @@ extension SKU {
                 case packageDimensions = "package_dimensions"
                 case price
                 case product
-            }
-
-            public init(currency: Currency, inventory: Inventory, price: Double, product: String) {
-                self.currency = currency
-                self.inventory = inventory
-                self.price = price
-                self.product = product
             }
 
             public var active: Bool? = nil

@@ -37,21 +37,6 @@ public struct Order: StripeModel, ListProtocol {
         case updated
     }
 
-    public struct StatusTransitions: StripeModel {
-        public let canceled: TimeInterval?
-        public let fulfiled: TimeInterval?
-        public let paid: TimeInterval?
-        public let returned: TimeInterval?
-    }
-
-    public enum Status: String, StripeModel {
-        case created
-        case paid
-        case canceled
-        case fulfilled
-        case returned
-    }
-
     public let id: String
     public let object: String
     public let amount: Int
@@ -73,6 +58,23 @@ public struct Order: StripeModel, ListProtocol {
     public let status:  Status
     public let statusTransitions: StatusTransitions
     public let updated: TimeInterval
+
+    // MARK: -
+
+    public struct StatusTransitions: StripeModel {
+        public let canceled: TimeInterval?
+        public let fulfiled: TimeInterval?
+        public let paid: TimeInterval?
+        public let returned: TimeInterval?
+    }
+
+    public enum Status: String, StripeModel {
+        case created
+        case paid
+        case canceled
+        case fulfilled
+        case returned
+    }
 }
 
 extension Order {
