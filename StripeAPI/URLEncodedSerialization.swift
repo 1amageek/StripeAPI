@@ -87,7 +87,7 @@ public final class _URLEncodedSerialization {
             throw Error.cannotCastObjectToDictionary(object)
         }
 
-        let string = self.string(from: dictionary)
+        let string = self.string(parentKey: nil, value: dictionary)
         guard let data = string.data(using: encoding, allowLossyConversion: false) else {
             throw Error.cannotGetDataFromString(string, encoding)
         }
@@ -96,28 +96,42 @@ public final class _URLEncodedSerialization {
     }
 
     /// Returns urlencoded `Data` from the string.
-    public static func string(from dictionary: [String: Any]) -> String {
-        let pairs = dictionary.map { key, value -> String in
+    public static func string(parentKey: String?, value: [String: Any]) -> String {
+        let pairs = value.map { key, value -> String in
             if value is NSNull {
                 return "\(escape(key))"
             }
-
+            var key = key
+            if let parentKey: String = parentKey {
+                key = "\(parentKey)[\(key)]"
+            }
             if let dictionary: [String: Any] = value as? [String: Any] {
-                let pairs = dictionary.map { nestedKey, value -> String in
-                    if value is NSNull {
-                        return "\(escape(nestedKey))"
-                    }
-                    let valueAsString = (value as? String) ?? "\(value)"
-                    let nestedKey: String = "\(key)[\(nestedKey)]"
-                    return "\(escape(nestedKey))=\(escape(valueAsString))"
-                }
-                return pairs.joined(separator: "&")
+                return self.string(parentKey: key, value: dictionary)
+            }
+            if let array: [Any] = value as? [Any] {
+                return self.string(parentKey: key, value: array)
             }
 
             let valueAsString = (value as? String) ?? "\(value)"
             return "\(escape(key))=\(escape(valueAsString))"
         }
+        return pairs.joined(separator: "&")
+    }
 
+    /// Returns urlencoded `Data` from the string.
+    public static func string(parentKey: String, value: [Any]) -> String {
+        let pairs = value.map { value -> String in
+            let key = "\(parentKey)[]"
+            if let dictionary: [String: Any] = value as? [String: Any] {
+                return self.string(parentKey: key, value: dictionary)
+            }
+            if let array: [Any] = value as? [Any] {
+                return self.string(parentKey: key, value: array)
+            }
+
+            let valueAsString = (value as? String) ?? "\(value)"
+            return "\(escape(key))=\(escape(valueAsString))"
+        }
         return pairs.joined(separator: "&")
     }
 }

@@ -46,7 +46,7 @@ public struct Order: StripeModel, ListProtocol {
     public let charge: String?
     public let created: TimeInterval
     public let currency: Currency
-    public let customer: String
+    public let customer: String?
     public let email: String?
     public let items: [OrderItem]
     public let livemode: Bool
@@ -112,12 +112,38 @@ extension Order {
             }
 
             public let currency: Currency
-            public let coupon: Coupon? = nil
-            public let customer: String? = nil
-            public let email: String? = nil
-            public let items: [OrderItem]? = nil
-            public let metadata: [String: String]? = nil
-            public let shipping: Shipping? = nil
+            public var coupon: Coupon? = nil
+            public var customer: String? = nil
+            public var email: String? = nil
+            public var items: [Parameters.OrderItem]? = nil
+            public var metadata: [String: String]? = nil
+            public var shipping: Shipping? = nil
+
+            public init(currency: Currency) {
+                self.currency = currency
+            }
+
+            public struct OrderItem: Codable {
+
+                public enum ItemType: String, Codable {
+                    case sku
+                    case tax
+                    case shipping
+                    case discount
+                }
+
+                public var amount: Int? = nil
+                public var currency: Currency? = nil
+                public var description: String? = nil
+                public var parent: String? = nil
+                public var quantity: Int? = nil
+                public var type: ItemType
+
+                public init(type: ItemType, parent: String?) {
+                    self.type = type
+                    self.parent = parent
+                }
+            }
         }
     }
 

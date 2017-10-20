@@ -167,11 +167,11 @@ class StripeAPITests: XCTestCase {
             case .success(let response):
                 print(response)
                 XCTAssertNotNil(response)
-                let id: String = response.id
+                let productID: String = response.id
                 SKU.Create(currency: Currency.JPY,
                            inventory: SKU.Inventory(type: .finite, quantity: 10),
                            price: 1000,
-                           product: id).send({ (result) in
+                           product: productID).send({ (result) in
                             switch result {
                             case .success(let response):
                                 XCTAssertNotNil(response)
@@ -190,7 +190,16 @@ class StripeAPITests: XCTestCase {
                                                 XCTAssertNotNil(response)
                                                 XCTAssertEqual(response.id, id)
                                                 XCTAssertEqual(response.deleted, true)
-                                                expectation.fulfill()
+                                                Product.Delete(id: productID).send({ (result) in
+                                                    switch result {
+                                                    case .success(let response):
+                                                        XCTAssertNotNil(response)
+                                                        XCTAssertEqual(response.id, productID)
+                                                        XCTAssertEqual(response.deleted, true)
+                                                        expectation.fulfill()
+                                                    case .failure(let error): print(error)
+                                                    }
+                                                })
                                             case .failure(let error): print(error)
                                             }
                                         })
@@ -207,20 +216,92 @@ class StripeAPITests: XCTestCase {
         self.wait(for: [expectation], timeout: 8)
     }
 
-    func testTestModel() {
-        let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")
-        SKU.Create(currency: Currency.JPY,
-                   inventory: SKU.Inventory(type: .finite, quantity: 10),
-                   price: 1000,
-                   product: "prod_BbpySqJvKNasSP").send({ (result) in
+    func testSource() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Source")
+        Source.Create(type: .bitcoin).send({ (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+                expectation.fulfill()
+            case .failure(let error): print(error)
+            }
+        })
+        self.wait(for: [expectation], timeout: 5)
+    }
+
+    func testOrder() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Order")
+        Customer.Create().send { (result) in
+            switch result {
+            case .success(let response):
+                let customerID: String = response.id
+                Product.Create(name: "Product3号").send { (result) in
                     switch result {
                     case .success(let response):
                         print(response)
                         XCTAssertNotNil(response)
-                        expectation.fulfill()
-                    case .failure(let error): print(error)
+                        let productID: String = response.id
+                        SKU.Create(currency: Currency.JPY,
+                                   inventory: SKU.Inventory(type: .finite, quantity: 10),
+                                   price: 1000,
+                                   product: productID).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        let orderItem = Order.Create.Parameters.OrderItem(type: .sku, parent: response.id)
+                                        let address: Address = Address(city: "ebisu", country: "jp", line1: "shibuya-ku", line2: nil, postalCode: "150-6012", state: "tokyo")
+                                        let shipping: Shipping = Shipping(address: address, name: "クック太郎", phone: "090-0000-0000")
+                                        var parameters = Order.Create.Parameters(currency: .JPY)
+                                        parameters.items = [orderItem]
+                                        parameters.shipping = shipping
+
+                                        Order.Create(parameters: parameters).send({ (result) in
+                                            switch result {
+                                            case .success(let response):
+                                                print(response)
+                                                XCTAssertNotNil(response)
+                                                Order.Pay(id: response.id, customer: customerID).send({ (result) in
+                                                    switch result {
+                                                    case .success(let response):
+                                                        print(response)
+                                                        XCTAssertNotNil(response)
+                                                        expectation.fulfill()
+                                                    case .failure(let error): print(error)
+                                                    }
+                                                })
+                                            case .failure(let error): print(error)
+                                            }
+                                        })
+                                    case .failure(let error): print(error)
+                                    }
+                                   })
+                    case .failure(let error):
+                        print(error)
                     }
-                   })
+                }
+            case .failure(let error): print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 8)
+    }
+
+    func testTestModel() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")
+        let orderItem = Order.Create.Parameters.OrderItem(type: .sku, parent: "sku_Bc8rj7W8lwdhf7")
+        let address: Address = Address(city: "ebisu", country: "jp", line1: "shibuya-ku", line2: nil, postalCode: "150-6012", state: "tokyo")
+        let shipping: Shipping = Shipping(address: address, name: "クック太郎", phone: "090-0000-0000")
+        var parameters = Order.Create.Parameters(currency: .JPY)
+        parameters.items = [orderItem]
+        parameters.shipping = shipping
+
+        Order.Create(parameters: parameters).send({ (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+                expectation.fulfill()
+            case .failure(let error): print(error)
+            }
+        })
         self.wait(for: [expectation], timeout: 5)
     }
 

@@ -34,6 +34,6 @@ public struct ShippingMethod: StripeModel {
     public let id: String
     public let amount: Int
     public let currency: Currency
-    public let deliveryEstimate: DeliveryEstimate
-    public let description: String
+    public let deliveryEstimate: DeliveryEstimate?
+    public let description: String?
 }

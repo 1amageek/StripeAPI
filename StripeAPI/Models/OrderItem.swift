@@ -10,7 +10,7 @@ import Foundation
 
 public struct OrderItem: StripeModel {
 
-    public enum ItemType: String, StripeModel {
+    public enum ItemType: String, Codable {
         case sku
         case tax
         case shipping
@@ -20,8 +20,8 @@ public struct OrderItem: StripeModel {
     public let object: String
     public let amount: Int
     public let currency: Currency
-    public let description: String
-    public let parent: String
+    public let description: String?
+    public let parent: String?
     public let quantity: Int?
-    public let type: String
+    public let type: ItemType
 }
