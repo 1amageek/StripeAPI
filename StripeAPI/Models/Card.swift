@@ -11,7 +11,7 @@ import APIKit
 
 public struct Card: StripeModel {
 
-    public static var path: String { return "/cards"}
+    public static var path: String { return "/sources"}
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -78,32 +78,31 @@ extension Card {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return Card.path }
+        public var path: String { return "\(Customer.path)/\(customerID)\(Card.path)" }
+
+        public let customerID: String
 
         public var _parameters: Any?
 
-        public init(currentcy: Currency) {
-            self._parameters = Parameters(currency: currentcy)
+        public init(customerID: String, expMonth: String, expYear: String, number: String, currency: Currency, cvc: String) {
+            self.customerID = customerID
+            self._parameters = Parameters(expMonth: expMonth, expYear: expYear, number: number, currency: currency, cvc: cvc)
         }
 
-        public init(parameters: Parameters) {
+        public init(customerID: String, parameters: Parameters) {
+            self.customerID = customerID
             self._parameters = parameters
         }
 
         public struct Parameters: Codable {
 
-            private enum CodingKeys: String, CodingKey {
-                case
-                case coupon
-                case customer
-                case email
-                case items
-                case metadata
-                case shipping
-            }
-
             public let source: Source
+
             public var metadata: [String: String]? = nil
+
+            public init(expMonth: String, expYear: String, number: String, currency: Currency, cvc: String) {
+                self.source = Source(expMonth: expMonth, expYear: expYear, number: number, currency: currency, cvc: cvc)
+            }
 
             public init(source: Source) {
                 self.source = source
@@ -119,19 +118,17 @@ extension Card {
                     case addressCity = "address_city"
                     case addressCountry = "address_country"
                     case addressLine1 = "address_line1"
-                    case addressLine1Check = "address_line1_check"
                     case addressLine2 = "address_line2"
                     case addressState = "address_state"
                     case addressZip = "address_zip"
-                    case country
+                    case currency
                     case cvc
                     case defaultForCurrency = "default_for_currency"
                     case metadata
                     case name
-                    case brand
                 }
 
-                public var object: String = "card"
+                public let object: String = "card"
                 public var expMonth: String
                 public var expYear: String
                 public var number: String
@@ -141,17 +138,18 @@ extension Card {
                 public var addressLine2: String? = nil
                 public var addressState: String? = nil
                 public var addressZip: String? = nil
-                public var country: Currency
-                public var cvc: String?
+                public var currency: Currency
+                public var cvc: String
                 public var defaultForCurrency: Bool? = nil
                 public var metadata: [String: String]? = nil
                 public var name: String? = nil
-                public var brand: String? = nil
 
-
-                public init(type: ItemType, parent: String?) {
-                    self.type = type
-                    self.parent = parent
+                public init(expMonth: String, expYear: String, number: String, currency: Currency, cvc: String) {
+                    self.expMonth = expMonth
+                    self.expYear = expYear
+                    self.number = number
+                    self.currency = currency
+                    self.cvc = cvc
                 }
             }
         }
@@ -165,7 +163,9 @@ extension Card {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "\(Card.path)/\(id)" }
+        public var path: String { return "\(Customer.path)/\(customerID)\(Card.path)/\(id)" }
+
+        public let customerID: String
 
         public let id: String
     }
@@ -178,13 +178,16 @@ extension Card {
 
         public var method: HTTPMethod { return .post }
 
-        public var path: String { return "\(Card.path)/\(id)" }
+        public var path: String { return "\(Customer.path)/\(customerID)\(Card.path)/\(id)" }
+
+        public let customerID: String
 
         public let id: String
 
         public var _parameters: Any?
 
-        public init(id: String, parameters: Parameters) {
+        public init(customerID: String, id: String, parameters: Parameters) {
+            self.customerID = customerID
             self.id = id
             self._parameters = parameters
         }
@@ -192,18 +195,30 @@ extension Card {
         public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
-                case coupon
+                case object
+                case addressCity = "address_city"
+                case addressCountry = "address_country"
+                case addressLine1 = "address_line1"
+                case addressLine2 = "address_line2"
+                case addressState = "address_state"
+                case addressZip = "address_zip"
+                case expMonth = "exp_month"
+                case expYear = "exp_year"
                 case metadata
-                case selectedShippingMethod = "selected_shipping_method"
-                case shipping
-                case status
+                case name
             }
 
-            public var coupon: Coupon? = nil
+            public let object: String = "card"
+            public var addressCity: String? = nil
+            public var addressCountry: String? = nil
+            public var addressLine1: String? = nil
+            public var addressLine2: String? = nil
+            public var addressState: String? = nil
+            public var addressZip: String? = nil
+            public var expMonth: String? = nil
+            public var expYear: String? = nil
             public var metadata: [String: String]? = nil
-            public var selectedShippingMethod: String? = nil
-            public var shipping: Shipping? = nil
-            public var status: Order.Status? = nil
+            public var name: String? = nil
         }
     }
 }

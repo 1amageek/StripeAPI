@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		120588E81F970D1600614ADF /* ApplicationFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120588E71F970D1600614ADF /* ApplicationFee.swift */; };
 		120588EA1F970F7100614ADF /* Refund.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120588E91F970F7100614ADF /* Refund.swift */; };
+		121D6A701F9CBD6A002940AD /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D6A6F1F9CBD6A002940AD /* TestConfiguration.swift */; };
 		12578A8D1F9739C900EE0CAC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12578A8C1F9739C900EE0CAC /* Account.swift */; };
 		12578A8F1F973EC200EE0CAC /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12578A8E1F973EC200EE0CAC /* BankAccount.swift */; };
 		126953041F80F3F5004F3373 /* StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126952FA1F80F3F5004F3373 /* StripeAPI.framework */; };
@@ -22,7 +23,6 @@
 		128CAE191F9483E400605189 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE181F9483E400605189 /* OrderItem.swift */; };
 		128CAE1B1F94847C00605189 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE1A1F94847C00605189 /* Currency.swift */; };
 		128CAE1F1F948F9000605189 /* PackageDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE1E1F948F9000605189 /* PackageDimensions.swift */; };
-		128CAE211F94915E00605189 /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE201F94915E00605189 /* TestConfiguration.swift */; };
 		128CAE231F94917600605189 /* TestConfiguration_sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE221F94917600605189 /* TestConfiguration_sample.swift */; };
 		128CAE251F94994E00605189 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128CAE241F94994E00605189 /* APIProtocol.swift */; };
 		129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F4A7C1F80F70700D91D25 /* Customer.swift */; };
@@ -85,6 +85,7 @@
 /* Begin PBXFileReference section */
 		120588E71F970D1600614ADF /* ApplicationFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFee.swift; sourceTree = "<group>"; };
 		120588E91F970F7100614ADF /* Refund.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refund.swift; sourceTree = "<group>"; };
+		121D6A6F1F9CBD6A002940AD /* TestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		12578A8C1F9739C900EE0CAC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		12578A8E1F973EC200EE0CAC /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
 		126952FA1F80F3F5004F3373 /* StripeAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StripeAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +102,6 @@
 		128CAE181F9483E400605189 /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		128CAE1A1F94847C00605189 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		128CAE1E1F948F9000605189 /* PackageDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageDimensions.swift; sourceTree = "<group>"; };
-		128CAE201F94915E00605189 /* TestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		128CAE221F94917600605189 /* TestConfiguration_sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfiguration_sample.swift; sourceTree = "<group>"; };
 		128CAE241F94994E00605189 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		129F4A7C1F80F70700D91D25 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 			children = (
 				126953081F80F3F5004F3373 /* StripeAPITests.swift */,
 				12C3F1B31F9891FC001B0C96 /* TestModel.swift */,
-				128CAE201F94915E00605189 /* TestConfiguration.swift */,
+				121D6A6F1F9CBD6A002940AD /* TestConfiguration.swift */,
 				128CAE221F94917600605189 /* TestConfiguration_sample.swift */,
 				1269530A1F80F3F5004F3373 /* Info.plist */,
 			);
@@ -503,13 +503,13 @@
 				12C3F1991F988090001B0C96 /* Customer.swift in Sources */,
 				12C3F1A31F988090001B0C96 /* SKU.swift in Sources */,
 				12C3F1AB1F988090001B0C96 /* Refund.swift in Sources */,
+				121D6A701F9CBD6A002940AD /* TestConfiguration.swift in Sources */,
 				12C3F19F1F988090001B0C96 /* Coupon.swift in Sources */,
 				128CAE231F94917600605189 /* TestConfiguration_sample.swift in Sources */,
 				12C3F1A41F988090001B0C96 /* Product.swift in Sources */,
 				12C3F1A61F988090001B0C96 /* PackageDimensions.swift in Sources */,
 				12C3F19B1F988090001B0C96 /* Shipping.swift in Sources */,
 				12C3F1A01F988090001B0C96 /* Source.swift in Sources */,
-				128CAE211F94915E00605189 /* TestConfiguration.swift in Sources */,
 				12C3F1AE1F988090001B0C96 /* BankAccount.swift in Sources */,
 				12C3F19E1F988090001B0C96 /* Discount.swift in Sources */,
 				12C3F1AF1F988094001B0C96 /* StripeAPI.swift in Sources */,
