@@ -41,8 +41,8 @@ public struct Card: StripeModel {
         case tokenizationMethod = "tokenization_method"
     }
 
-    public let id: String?
-    public let object: String?
+    public let id: String
+    public let object: String
     public let addressCity: String?
     public let addressCountry: String?
     public let addressLine1: String?
@@ -54,12 +54,12 @@ public struct Card: StripeModel {
     public let brand: String?
     public let country: String?
     public let currency: Currency?
-    public let customer: String?
+    public let customer: String
     public let cvcCheck: String?
     public let defaultForCurrency: Bool?
     public let dynamicLast4: String?
-    public let expMonth: String?
-    public let expYear: String?
+    public let expMonth: Int
+    public let expYear: Int
     public let fingerprint: String?
     public let funding: String?
     public let last4: String?
@@ -195,7 +195,6 @@ extension Card {
         public struct Parameters: Codable {
 
             private enum CodingKeys: String, CodingKey {
-                case object
                 case addressCity = "address_city"
                 case addressCountry = "address_country"
                 case addressLine1 = "address_line1"
@@ -208,7 +207,6 @@ extension Card {
                 case name
             }
 
-            public let object: String = "card"
             public var addressCity: String? = nil
             public var addressCountry: String? = nil
             public var addressLine1: String? = nil
@@ -219,6 +217,24 @@ extension Card {
             public var expYear: String? = nil
             public var metadata: [String: String]? = nil
             public var name: String? = nil
+        }
+    }
+
+    // MARK: - Delete
+
+    public struct Delete: StripeAPI {
+
+        public var method: HTTPMethod { return .delete }
+
+        public var path: String { return "\(Customer.path)/\(customerID)\(Card.path)/\(id)" }
+
+        public let customerID: String
+
+        public let id: String
+
+        public struct Response: Codable {
+            public let deleted: Bool
+            public let id: String
         }
     }
 }

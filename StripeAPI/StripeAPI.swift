@@ -82,7 +82,6 @@ public extension StripeAPI where Parameters: Encodable, Self: ParametersProtocol
         }
         let data: Data = try! JSONEncoder().encode(parameters)
         let json: [String: Any] = try! JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as! [String : Any]
-        print("!!!", json)
         return URLEncodedBodyParameters(formObject: json)
     }
 }
