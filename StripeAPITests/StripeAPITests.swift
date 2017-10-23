@@ -308,7 +308,25 @@ class StripeAPITests: XCTestCase {
                                     case .success(let response):
                                         XCTAssertNotNil(response)
                                         XCTAssertEqual(response.id, cardID)
-                                        expectation.fulfill()
+                                        Card.Delete(customerID: customerID, id: cardID).send({ (result) in
+                                            switch result {
+                                            case .success(let response):
+                                                XCTAssertNotNil(response)
+                                                XCTAssertEqual(response.id, cardID)
+                                                XCTAssertEqual(response.deleted, true)
+                                                Customer.Delete(id: customerID).send({ (result) in
+                                                    switch result {
+                                                    case .success(let response):
+                                                        XCTAssertNotNil(response)
+                                                        XCTAssertEqual(response.id, customerID)
+                                                        XCTAssertEqual(response.deleted, true)
+                                                        expectation.fulfill()
+                                                    case .failure(let error): print(error)
+                                                    }
+                                                })
+                                            case .failure(let error): print(error)
+                                            }
+                                        })
                                     case .failure(let error): print(error)
                                     }
                                 })

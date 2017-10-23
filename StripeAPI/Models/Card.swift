@@ -219,4 +219,22 @@ extension Card {
             public var name: String? = nil
         }
     }
+
+    // MARK: - Delete
+
+    public struct Delete: StripeAPI {
+
+        public var method: HTTPMethod { return .delete }
+
+        public var path: String { return "\(Customer.path)/\(customerID)\(Card.path)/\(id)" }
+
+        public let customerID: String
+
+        public let id: String
+
+        public struct Response: Codable {
+            public let deleted: Bool
+            public let id: String
+        }
+    }
 }
