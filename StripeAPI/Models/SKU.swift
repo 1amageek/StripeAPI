@@ -62,9 +62,21 @@ public struct SKU: StripeModel, ListProtocol {
             case inStock = "in_stock"
         }
 
-        public init(type: InventoryType, quantity: Int) {
-            self.type = type
+        /// init as .finate
+        public init(quantity: Int) {
+            self.type = .finite
             self.quantity = quantity
+        }
+
+        /// init as .infinite
+        public init() {
+            self.type = .infinite
+        }
+
+        /// init as .bucket
+        public init(value: BucketValue) {
+            self.type = .bucket
+            self.value = value
         }
 
         /// The count of inventory available. Will be present if and only if type is finite.
