@@ -4,6 +4,7 @@
 
 StripeAPITests/TestConfiguration.swift
 
+.DS_Store
 
 ## Build generated
 build/
