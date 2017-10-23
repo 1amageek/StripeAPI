@@ -169,7 +169,7 @@ class StripeAPITests: XCTestCase {
                 XCTAssertNotNil(response)
                 let productID: String = response.id
                 SKU.Create(currency: Currency.JPY,
-                           inventory: SKU.Inventory(type: .finite, quantity: 10),
+                           inventory: SKU.Inventory(quantity: 10),
                            price: 1000,
                            product: productID).send({ (result) in
                             switch result {
@@ -242,7 +242,7 @@ class StripeAPITests: XCTestCase {
                         XCTAssertNotNil(response)
                         let productID: String = response.id
                         SKU.Create(currency: Currency.JPY,
-                                   inventory: SKU.Inventory(type: .finite, quantity: 10),
+                                   inventory: SKU.Inventory(quantity: 10),
                                    price: 1000,
                                    product: productID).send({ (result) in
                                     switch result {
@@ -279,6 +279,45 @@ class StripeAPITests: XCTestCase {
                         print(error)
                     }
                 }
+            case .failure(let error): print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 8)
+    }
+
+    func testCard() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Customer")
+        Customer.Create().send { (result) in
+            switch result {
+            case .success(let response):
+                XCTAssertNotNil(response)
+                let customerID: String = response.id
+                Card.Create(customerID: customerID, expMonth: "10", expYear: "2020", number: "4242424242424242", currency: .JPY, cvc: "123").send({ (result) in
+                    switch result {
+                    case .success(let response):
+                        XCTAssertNotNil(response)
+                        let cardID: String = response.id
+                        Card.Retrieve(customerID: customerID, id: cardID).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                XCTAssertNotNil(response)
+                                XCTAssertEqual(response.id, cardID)
+                                let param: Card.Update.Parameters = Card.Update.Parameters(addressCity: nil, addressCountry: nil, addressLine1: nil, addressLine2: nil, addressState: nil, addressZip: nil, expMonth: "10", expYear: "2021", metadata: nil, name: nil)
+                                Card.Update(customerID: customerID, id: cardID, parameters: param).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        XCTAssertEqual(response.id, cardID)
+                                        expectation.fulfill()
+                                    case .failure(let error): print(error)
+                                    }
+                                })
+                            case .failure(let error): print(error)
+                            }
+                        })
+                    case .failure(let error): print(error)
+                    }
+                })
             case .failure(let error): print(error)
             }
         }
