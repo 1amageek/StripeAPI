@@ -34,15 +34,15 @@ extension StripeAPI {
     }
 
     public var headerFields: [String : String] {
-        return ["authorization": "Bearer \(secretKey)"]
+        return ["authorization": "Bearer \(apiKey)"]
     }
 
-    public var secretKey: String {
-        return Configuration.shared.secretKey
+    public var apiKey: String {
+        return Configuration.shared.apiKey
     }
 
     var encodedKey: String {
-        let data: Data = self.secretKey.data(using: String.Encoding.utf8)!
+        let data: Data = self.apiKey.data(using: String.Encoding.utf8)!
         return data.base64EncodedString()
     }
 

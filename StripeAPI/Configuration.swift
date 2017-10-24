@@ -12,10 +12,10 @@ public class Configuration {
 
     public static var shared: Configuration!
 
-    public var secretKey: String
+    public var apiKey: String
 
-    public init(secretKey: String) {
-        self.secretKey = secretKey
+    public init(apiKey: String) {
+        self.apiKey = apiKey
         Configuration.shared = self
     }
 }

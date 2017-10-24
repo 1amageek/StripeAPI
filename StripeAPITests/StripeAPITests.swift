@@ -12,7 +12,7 @@ import APIKit
 
 class StripeAPITests: XCTestCase {
 
-    let configure: Configuration = Configuration(secretKey: TestConfiguration.secretKey)
+    let configure: Configuration = Configuration(apiKey: TestConfiguration.secretKey)
 
     override func setUp() {
         super.setUp()
@@ -65,6 +65,9 @@ class StripeAPITests: XCTestCase {
         self.wait(for: [expectation], timeout: 5)
     }
 
+    /**
+     This test can not be executed with API Key.
+    */
     func testAccount() {
         let expectation: XCTestExpectation = XCTestExpectation(description: "Account")
         Account.Create(type: .custom, email: nil, country: Locale.current.regionCode).send { (result) in
@@ -231,54 +234,64 @@ class StripeAPITests: XCTestCase {
 
     func testOrder() {
         let expectation: XCTestExpectation = XCTestExpectation(description: "Order")
-        Customer.Create().send { (result) in
+        var params: Customer.Create.Parameters = Customer.Create.Parameters()
+        params.email = "sample@sample.com"
+        Customer.Create(parameters: params).send { (result) in
             switch result {
             case .success(let response):
                 let customerID: String = response.id
-                Product.Create(name: "Product3号").send { (result) in
+                Card.Create(customerID: customerID, expMonth: "10", expYear: "2020", number: "4242424242424242", currency: .JPY, cvc: "123").send({ (result) in
                     switch result {
                     case .success(let response):
-                        print(response)
                         XCTAssertNotNil(response)
-                        let productID: String = response.id
-                        SKU.Create(currency: Currency.JPY,
-                                   inventory: SKU.Inventory(quantity: 10),
-                                   price: 1000,
-                                   product: productID).send({ (result) in
-                                    switch result {
-                                    case .success(let response):
-                                        XCTAssertNotNil(response)
-                                        let orderItem = Order.Create.Parameters.OrderItem(type: .sku, parent: response.id)
-                                        let address: Address = Address(city: "ebisu", country: "jp", line1: "shibuya-ku", line2: nil, postalCode: "150-6012", state: "tokyo")
-                                        let shipping: Shipping = Shipping(address: address, name: "クック太郎", phone: "090-0000-0000")
-                                        var parameters = Order.Create.Parameters(currency: .JPY)
-                                        parameters.items = [orderItem]
-                                        parameters.shipping = shipping
-
-                                        Order.Create(parameters: parameters).send({ (result) in
+                        Product.Create(name: "Product3号").send { (result) in
+                            switch result {
+                            case .success(let response):
+                                print(response)
+                                XCTAssertNotNil(response)
+                                let productID: String = response.id
+                                SKU.Create(currency: Currency.JPY,
+                                           inventory: SKU.Inventory(quantity: 10),
+                                           price: 1000,
+                                           product: productID).send({ (result) in
                                             switch result {
                                             case .success(let response):
-                                                print(response)
                                                 XCTAssertNotNil(response)
-                                                Order.Pay(id: response.id, customer: customerID).send({ (result) in
+                                                let orderItem = Order.Create.Parameters.OrderItem(type: .sku, parent: response.id)
+                                                let address: Address = Address(city: "ebisu", country: "jp", line1: "shibuya-ku", line2: nil, postalCode: "150-6012", state: "tokyo")
+                                                let shipping: Shipping = Shipping(address: address, name: "クック太郎", phone: "090-0000-0000")
+                                                var parameters = Order.Create.Parameters(currency: .JPY)
+                                                parameters.items = [orderItem]
+                                                parameters.shipping = shipping
+
+                                                Order.Create(parameters: parameters).send({ (result) in
                                                     switch result {
                                                     case .success(let response):
                                                         print(response)
                                                         XCTAssertNotNil(response)
-                                                        expectation.fulfill()
+                                                        Order.Pay(id: response.id, customer: customerID).send({ (result) in
+                                                            switch result {
+                                                            case .success(let response):
+                                                                print(response)
+                                                                XCTAssertNotNil(response)
+                                                                expectation.fulfill()
+                                                            case .failure(let error): print(error)
+                                                            }
+                                                        })
                                                     case .failure(let error): print(error)
                                                     }
                                                 })
                                             case .failure(let error): print(error)
                                             }
-                                        })
-                                    case .failure(let error): print(error)
-                                    }
-                                   })
+                                           })
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     case .failure(let error):
                         print(error)
                     }
-                }
+                })
             case .failure(let error): print(error)
             }
         }
