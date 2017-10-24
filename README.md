@@ -22,7 +22,7 @@ https://dashboard.stripe.com/account/apikeys
 ⚠️ **Use restricted API Key. Do not use SecretKey.**
 
 ``` swift
-let configure: Configuration = Configuration(apiK: "rk_test_xxxxxxxx")
+let configure: Configuration = Configuration(apiKey: "rk_test_xxxxxxxx")
 ```
 
 ### Call
