@@ -372,8 +372,85 @@ class StripeAPITests: XCTestCase {
                             switch result {
                             case .success(let response):
                                 XCTAssertNotNil(response)
-                                expectation.fulfill()
+                                let id: String = response.id
+                                Charge.Retrieve(id: id).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        XCTAssertEqual(response.id, id)
+                                        var params: Charge.Update.Parameters = Charge.Update.Parameters()
+                                        let description: String = "description"
+                                        params.description = description
+                                        Charge.Update(id: id, parameters: params).send({ (result) in
+                                            switch result {
+                                            case .success(let response):
+                                                XCTAssertNotNil(response)
+                                                XCTAssertEqual(response.id, id)
+                                                XCTAssertEqual(response.description, description)
+                                                expectation.fulfill()
+                                            case .failure(let error): print(error)
+                                            }
+                                        })
+                                    case .failure(let error): print(error)
+                                    }
+                                })
+                            case .failure(let error): print(error)
+                            }
+                        })
+                    case .failure(let error): print(error)
+                    }
+                })
+            case .failure(let error): print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 5)
+    }
 
+    func testChargeCapture() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "ChargeCapture")
+        Customer.Create().send { (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+                XCTAssertNotNil(response)
+                let customerID: String = response.id
+                Card.Create(customerID: customerID, expMonth: "10", expYear: "2020", number: "4242424242424242", currency: .JPY, cvc: "123").send({ (result) in
+                    switch result {
+                    case .success(let response):
+                        XCTAssertNotNil(response)
+                        let cardID: String = response.id
+                        var params: Charge.Create.Parameters = Charge.Create.Parameters(amount: 1000, currency: .JPY, customer: customerID)
+                        params.capture = false
+                        Charge.Create(parameters: params).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                XCTAssertNotNil(response)
+                                Charge.Capture(id: response.id).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        Card.Delete(customerID: customerID, id: cardID).send({ (result) in
+                                            switch result {
+                                            case .success(let response):
+                                                XCTAssertNotNil(response)
+                                                XCTAssertEqual(response.id, cardID)
+                                                XCTAssertEqual(response.deleted, true)
+                                                Customer.Delete(id: customerID).send({ (result) in
+                                                    switch result {
+                                                    case .success(let response):
+                                                        XCTAssertNotNil(response)
+                                                        XCTAssertEqual(response.id, customerID)
+                                                        XCTAssertEqual(response.deleted, true)
+                                                        expectation.fulfill()
+                                                    case .failure(let error): print(error)
+                                                    }
+                                                })
+                                            case .failure(let error): print(error)
+                                            }
+                                        })
+                                    case .failure(let error): print(error)
+                                    }
+                                })
                             case .failure(let error): print(error)
                             }
                         })

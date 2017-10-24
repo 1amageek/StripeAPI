@@ -57,7 +57,7 @@ public struct Charge: StripeModel, ListProtocol {
     public let amountRefunded: Double
     public let application: String?
     public let applicationFee: String?
-    public let balanceTransaction: String
+    public let balanceTransaction: String?
     public let captured: Bool
     public let created: TimeInterval
     public let currency: Currency
@@ -241,12 +241,55 @@ extension Charge {
                 case transferGroup = "transfer_group"
             }
 
-            public let description: String? = nil
-            public let fraudDetails: FraudDetails? = nil
-            public let metadata: [String: String]? = nil
-            public let receiptEmail: String? = nil
-            public let shipping: Shipping? = nil
-            public let transferGroup: String? = nil
+            public var description: String? = nil
+            public var fraudDetails: FraudDetails? = nil
+            public var metadata: [String: String]? = nil
+            public var receiptEmail: String? = nil
+            public var shipping: Shipping? = nil
+            public var transferGroup: String? = nil
+        }
+    }
+
+    // MARK: - Capture
+
+    public struct Capture: StripeParametersAPI {
+
+        public typealias Response = Charge
+
+        public var method: HTTPMethod { return .post }
+
+        public var path: String { return "\(Charge.path)/\(id)/capture" }
+
+        public let id: String
+
+        public var _parameters: Any?
+
+        public init(id: String, parameters: Parameters? = nil) {
+            self.id = id
+            self._parameters = parameters
+        }
+
+        public struct Parameters: Codable {
+
+            private enum CodingKeys: String, CodingKey {
+                case amount
+                case applicationFee = "application_fee"
+                case destination
+                case receiptEmail = "receipt_email"
+                case statementDescriptor = "statement_descriptor"
+            }
+
+            public var amount: Double? = nil
+            public var applicationFee: String? = nil
+            public var destination: Destination? = nil
+            public var receiptEmail: String? = nil
+            public var statementDescriptor: String? = nil
+
+            public struct Destination: Codable {
+
+                public let account: String
+                public var amount: Double? = nil
+            }
         }
     }
 }

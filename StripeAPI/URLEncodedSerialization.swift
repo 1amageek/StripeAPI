@@ -111,8 +111,7 @@ public final class _URLEncodedSerialization {
             if let array: [Any] = value as? [Any] {
                 return self.string(parentKey: key, value: array)
             }
-
-            let valueAsString = (value as? String) ?? "\(value)"
+            let valueAsString: String = self.string(value: value)
             return "\(escape(key))=\(escape(valueAsString))"
         }
         return pairs.joined(separator: "&")
@@ -128,10 +127,19 @@ public final class _URLEncodedSerialization {
             if let array: [Any] = value as? [Any] {
                 return self.string(parentKey: key, value: array)
             }
-
-            let valueAsString = (value as? String) ?? "\(value)"
+            let valueAsString: String = self.string(value: value)
             return "\(escape(key))=\(escape(valueAsString))"
         }
         return pairs.joined(separator: "&")
+    }
+
+    public static func string(value: Any) -> String {
+        if let value: String = value as? String {
+            return value
+        } else if let value: Bool = value as? Bool {
+            return value ? "true" : "false"
+        } else {
+            return "\(value)"
+        }
     }
 }
