@@ -286,7 +286,7 @@ class StripeAPITests: XCTestCase {
     }
 
     func testCard() {
-        let expectation: XCTestExpectation = XCTestExpectation(description: "Customer")
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Card")
         Customer.Create().send { (result) in
             switch result {
             case .success(let response):
@@ -341,6 +341,35 @@ class StripeAPITests: XCTestCase {
         }
         self.wait(for: [expectation], timeout: 8)
     }
+
+    func testBalance() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Balance")
+        Balance.Retrieve().send { (result) in
+            switch result {
+            case .success(let response):
+                XCTAssertNotNil(response)
+                XCTAssertEqual(response.object, "balance")
+                expectation.fulfill()
+            case .failure(let error): print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 8)
+    }
+
+//    func testBalanceTrasaction() {
+//        let expectation: XCTestExpectation = XCTestExpectation(description: "BalanceTransaction")
+//        BalanceTransaction.Retrieve(id: ).send { (result) in
+//            switch result {
+//            case .success(let response):
+//                XCTAssertNotNil(response)
+//                XCTAssertEqual(response.object, "balance")
+//                expectation.fulfill()
+//            case .failure(let error): print(error)
+//            }
+//        }
+//        self.wait(for: [expectation], timeout: 8)
+//    }
+
 
     func testTestModel() {
         let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")

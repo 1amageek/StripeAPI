@@ -12,6 +12,8 @@
 		121D6A701F9CBD6A002940AD /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D6A6F1F9CBD6A002940AD /* TestConfiguration.swift */; };
 		12578A8D1F9739C900EE0CAC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12578A8C1F9739C900EE0CAC /* Account.swift */; };
 		12578A8F1F973EC200EE0CAC /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12578A8E1F973EC200EE0CAC /* BankAccount.swift */; };
+		12649EFD1F9F0039004C6130 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12649EFC1F9F0039004C6130 /* Balance.swift */; };
+		12649EFE1F9F08ED004C6130 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12649EFC1F9F0039004C6130 /* Balance.swift */; };
 		126953041F80F3F5004F3373 /* StripeAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 126952FA1F80F3F5004F3373 /* StripeAPI.framework */; };
 		126953091F80F3F5004F3373 /* StripeAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126953081F80F3F5004F3373 /* StripeAPITests.swift */; };
 		1269530B1F80F3F5004F3373 /* StripeAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 126952FD1F80F3F5004F3373 /* StripeAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -88,6 +90,7 @@
 		121D6A6F1F9CBD6A002940AD /* TestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		12578A8C1F9739C900EE0CAC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		12578A8E1F973EC200EE0CAC /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
+		12649EFC1F9F0039004C6130 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
 		126952FA1F80F3F5004F3373 /* StripeAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StripeAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		126952FD1F80F3F5004F3373 /* StripeAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripeAPI.h; sourceTree = "<group>"; };
 		126952FE1F80F3F5004F3373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				128CAE1A1F94847C00605189 /* Currency.swift */,
+				12649EFC1F9F0039004C6130 /* Balance.swift */,
 				129F4A7C1F80F70700D91D25 /* Customer.swift */,
 				1287EBFD1F95BE1D0017D9C8 /* Subscription.swift */,
 				1287EBF71F959FBE0017D9C8 /* Shipping.swift */,
@@ -458,6 +462,7 @@
 				12C3F1B61F98DF36001B0C96 /* URLEncodedSerialization.swift in Sources */,
 				129F4A7F1F80F83D00D91D25 /* Order.swift in Sources */,
 				129F4A811F80F88D00D91D25 /* StripeAPI.swift in Sources */,
+				12649EFD1F9F0039004C6130 /* Balance.swift in Sources */,
 				129FE6F41F94FBE9002AC702 /* Coupon.swift in Sources */,
 				129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */,
 				128CAE191F9483E400605189 /* OrderItem.swift in Sources */,
@@ -502,6 +507,7 @@
 				12C3F1A11F988090001B0C96 /* List.swift in Sources */,
 				12C3F1991F988090001B0C96 /* Customer.swift in Sources */,
 				12C3F1A31F988090001B0C96 /* SKU.swift in Sources */,
+				12649EFE1F9F08ED004C6130 /* Balance.swift in Sources */,
 				12C3F1AB1F988090001B0C96 /* Refund.swift in Sources */,
 				121D6A701F9CBD6A002940AD /* TestConfiguration.swift in Sources */,
 				12C3F19F1F988090001B0C96 /* Coupon.swift in Sources */,

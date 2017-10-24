@@ -34,7 +34,7 @@ extension List where T: ListProtocol {
 
         public var method: HTTPMethod { return .get }
 
-        public var path: String { return "\(Element.path)" }
+        public var path: String { return Element.path }
 
         public typealias Response = List<Element>
 
@@ -54,3 +54,31 @@ extension List where T: ListProtocol {
         public let endingBefore: String
     }
 }
+
+//extension List where T: ListProtocol, T == Balance {
+//
+//    public struct Get: StripeAPI {
+//
+//        public var method: HTTPMethod { return .get }
+//
+//        public var path: String { return "\(Element.path)/history" }
+//
+//        public typealias Response = List<Element>
+//
+//        public let limit: Int = 30
+//    }
+//
+//    public struct Next: StripeAPI {
+//
+//        public var method: HTTPMethod { return .get }
+//
+//        public var path: String { return "\(Element.path)/history" }
+//
+//        public typealias Response = List<Element>
+//
+//        public let limit: Int = 30
+//
+//        public let endingBefore: String
+//    }
+//}
+
