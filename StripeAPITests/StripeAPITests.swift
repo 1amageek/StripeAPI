@@ -356,6 +356,36 @@ class StripeAPITests: XCTestCase {
         self.wait(for: [expectation], timeout: 8)
     }
 
+    func testCharge() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Charge")
+        Customer.Create().send { (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+                XCTAssertNotNil(response)
+                let customerID: String = response.id
+                Card.Create(customerID: customerID, expMonth: "10", expYear: "2020", number: "4242424242424242", currency: .JPY, cvc: "123").send({ (result) in
+                    switch result {
+                    case .success(let response):
+                        XCTAssertNotNil(response)
+                        Charge.Create(amount: 1000, currency: .JPY, customer: customerID).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                XCTAssertNotNil(response)
+                                expectation.fulfill()
+
+                            case .failure(let error): print(error)
+                            }
+                        })
+                    case .failure(let error): print(error)
+                    }
+                })
+            case .failure(let error): print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 5)
+    }
+
 //    func testBalanceTrasaction() {
 //        let expectation: XCTestExpectation = XCTestExpectation(description: "BalanceTransaction")
 //        BalanceTransaction.Retrieve(id: ).send { (result) in

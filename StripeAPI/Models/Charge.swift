@@ -11,7 +11,7 @@ import APIKit
 
 public struct Charge: StripeModel, ListProtocol {
 
-    public static var path: String { return "/products"}
+    public static var path: String { return "/charges"}
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -64,11 +64,11 @@ public struct Charge: StripeModel, ListProtocol {
     public let customer: String
     public let description: String?
     public let destination: String?
-    public let dispute: String
+    public let dispute: String?
     public let failureCode: String?
     public let failureMessage: String?
     public let fraudDetails: FraudDetails
-    public let invoice: String
+    public let invoice: String?
     public let livemode: Bool
     public let metadata: [String: String]?
     public let onBehalfOf: String?
@@ -80,7 +80,7 @@ public struct Charge: StripeModel, ListProtocol {
     public let refunded: Bool?
     public let refunds: List<Refund>
     public let review: String?
-    public let shipping: Shipping
+    public let shipping: Shipping?
     public let source: Card
     public let sourceTransfer: String?
     public let statementDescriptor: String?
