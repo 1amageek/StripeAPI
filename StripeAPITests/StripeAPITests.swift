@@ -490,6 +490,70 @@ class StripeAPITests: XCTestCase {
 //        self.wait(for: [expectation], timeout: 8)
 //    }
 
+    func testBankAccount() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "Card")
+        Customer.Create().send { (result) in
+            switch result {
+            case .success(let response):
+                XCTAssertNotNil(response)
+                let customerID: String = response.id
+                let name: String = "Jane Austen"
+                var param: BankAccount.Create.Parameters = BankAccount.Create.Parameters(accountNumber: "000123456789", country: Locale.current.regionCode!, currency: .USD)
+                param.source.routingNumber = "110000000"
+                param.source.accountHolderName = name
+                param.source.accountHolderType = .individual
+                BankAccount.Create(customerID: customerID, parameters: param).send({ (result) in
+                    switch result {
+                    case .success(let response):
+                        XCTAssertNotNil(response)
+                        let sourceID: String = response.id
+                        BankAccount.Retrieve(customerID: customerID, id: sourceID).send({ (result) in
+                            switch result {
+                            case .success(let response):
+                                XCTAssertNotNil(response)
+                                XCTAssertEqual(response.id, sourceID)
+                                let nmae: String = "aaaa bbbb"
+                                var param: BankAccount.Update.Parameters = BankAccount.Update.Parameters()
+                                param.accountHolderName = name
+                                BankAccount.Update(customerID: customerID, id: sourceID, parameters: param).send({ (result) in
+                                    switch result {
+                                    case .success(let response):
+                                        XCTAssertNotNil(response)
+                                        XCTAssertEqual(response.id, sourceID)
+                                        XCTAssertEqual(response.accountHolderName, name)
+                                        BankAccount.Delete(customerID: customerID, id: sourceID).send({ (result) in
+                                            switch result {
+                                            case .success(let response):
+                                                XCTAssertNotNil(response)
+                                                XCTAssertEqual(response.id, sourceID)
+                                                XCTAssertEqual(response.deleted, true)
+                                                Customer.Delete(id: customerID).send({ (result) in
+                                                    switch result {
+                                                    case .success(let response):
+                                                        XCTAssertNotNil(response)
+                                                        XCTAssertEqual(response.id, customerID)
+                                                        XCTAssertEqual(response.deleted, true)
+                                                        expectation.fulfill()
+                                                    case .failure(let error): print(error)
+                                                    }
+                                                })
+                                            case .failure(let error): print(error)
+                                            }
+                                        })
+                                    case .failure(let error): print(error)
+                                    }
+                                })
+                            case .failure(let error): print(error)
+                            }
+                        })
+                    case .failure(let error): print(error)
+                    }
+                })
+            case .failure(let error): print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 8)
+    }
 
     func testTestModel() {
         let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")

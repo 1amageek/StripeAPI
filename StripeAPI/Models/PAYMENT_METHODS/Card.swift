@@ -58,8 +58,8 @@ public struct Card: StripeModel {
     public let cvcCheck: String?
     public let defaultForCurrency: Bool?
     public let dynamicLast4: String?
-    public let expMonth: Int
-    public let expYear: Int
+    public let expMonth: Int?
+    public let expYear: Int?
     public let fingerprint: String?
     public let funding: String?
     public let last4: String?
