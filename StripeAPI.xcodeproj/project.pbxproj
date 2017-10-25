@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		120588E81F970D1600614ADF /* ApplicationFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120588E71F970D1600614ADF /* ApplicationFee.swift */; };
 		120588EA1F970F7100614ADF /* Refund.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120588E91F970F7100614ADF /* Refund.swift */; };
+		121CAEDC1FA07C1C00274F59 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121CAEDB1FA07C1C00274F59 /* Invoice.swift */; };
+		121CAEDE1FA0818100274F59 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121CAEDD1FA0818100274F59 /* Plan.swift */; };
+		121CAEDF1FA0818400274F59 /* Invoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121CAEDB1FA07C1C00274F59 /* Invoice.swift */; };
+		121CAEE01FA0818400274F59 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121CAEDD1FA0818100274F59 /* Plan.swift */; };
 		121D6A701F9CBD6A002940AD /* TestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121D6A6F1F9CBD6A002940AD /* TestConfiguration.swift */; };
 		12578A8D1F9739C900EE0CAC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12578A8C1F9739C900EE0CAC /* Account.swift */; };
 		12578A8F1F973EC200EE0CAC /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12578A8E1F973EC200EE0CAC /* BankAccount.swift */; };
@@ -87,6 +91,8 @@
 /* Begin PBXFileReference section */
 		120588E71F970D1600614ADF /* ApplicationFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFee.swift; sourceTree = "<group>"; };
 		120588E91F970F7100614ADF /* Refund.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refund.swift; sourceTree = "<group>"; };
+		121CAEDB1FA07C1C00274F59 /* Invoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invoice.swift; sourceTree = "<group>"; };
+		121CAEDD1FA0818100274F59 /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		121D6A6F1F9CBD6A002940AD /* TestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfiguration.swift; sourceTree = "<group>"; };
 		12578A8C1F9739C900EE0CAC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		12578A8E1F973EC200EE0CAC /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
@@ -187,6 +193,8 @@
 				129FE6F11F94FB0C002AC702 /* Discount.swift */,
 				1287EBFD1F95BE1D0017D9C8 /* Subscription.swift */,
 				129FE6F31F94FBE9002AC702 /* Coupon.swift */,
+				121CAEDB1FA07C1C00274F59 /* Invoice.swift */,
+				121CAEDD1FA0818100274F59 /* Plan.swift */,
 			);
 			path = SUBSCRIPTIONS;
 			sourceTree = "<group>";
@@ -488,6 +496,7 @@
 				129F4A811F80F88D00D91D25 /* StripeAPI.swift in Sources */,
 				12649EFD1F9F0039004C6130 /* Balance.swift in Sources */,
 				129FE6F41F94FBE9002AC702 /* Coupon.swift in Sources */,
+				121CAEDC1FA07C1C00274F59 /* Invoice.swift in Sources */,
 				129F4A861F80F9CF00D91D25 /* Charge.swift in Sources */,
 				128CAE191F9483E400605189 /* OrderItem.swift in Sources */,
 				129F4A881F80F9E600D91D25 /* SKU.swift in Sources */,
@@ -497,6 +506,7 @@
 				128CAE1F1F948F9000605189 /* PackageDimensions.swift in Sources */,
 				1287EC021F95CEEF0017D9C8 /* Configuration.swift in Sources */,
 				129F4A8C1F80FA1A00D91D25 /* Outcome.swift in Sources */,
+				121CAEDE1FA0818100274F59 /* Plan.swift in Sources */,
 				12578A8F1F973EC200EE0CAC /* BankAccount.swift in Sources */,
 				129F4A7D1F80F70700D91D25 /* Customer.swift in Sources */,
 				128CAE251F94994E00605189 /* APIProtocol.swift in Sources */,
@@ -521,12 +531,14 @@
 				12C3F19A1F988090001B0C96 /* Subscription.swift in Sources */,
 				12C3F1B11F988094001B0C96 /* StripeAPIDecoder.swift in Sources */,
 				12C3F1B01F988094001B0C96 /* Configuration.swift in Sources */,
+				121CAEE01FA0818400274F59 /* Plan.swift in Sources */,
 				12C3F1A71F988090001B0C96 /* Card.swift in Sources */,
 				12C3F1981F988090001B0C96 /* Currency.swift in Sources */,
 				12C3F19C1F988090001B0C96 /* ShippingMethod.swift in Sources */,
 				12C3F1AC1F988090001B0C96 /* OrderItem.swift in Sources */,
 				12C3F1B71F98E3E4001B0C96 /* URLEncodedSerialization.swift in Sources */,
 				12C3F1B41F9891FC001B0C96 /* TestModel.swift in Sources */,
+				121CAEDF1FA0818400274F59 /* Invoice.swift in Sources */,
 				12C3F1A91F988090001B0C96 /* Order.swift in Sources */,
 				12C3F1A11F988090001B0C96 /* List.swift in Sources */,
 				12C3F1991F988090001B0C96 /* Customer.swift in Sources */,

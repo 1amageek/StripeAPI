@@ -512,15 +512,15 @@ class StripeAPITests: XCTestCase {
                             case .success(let response):
                                 XCTAssertNotNil(response)
                                 XCTAssertEqual(response.id, sourceID)
-                                let nmae: String = "aaaa bbbb"
+                                let changeName: String = "aaaa bbbb"
                                 var param: BankAccount.Update.Parameters = BankAccount.Update.Parameters()
-                                param.accountHolderName = name
+                                param.accountHolderName = changeName
                                 BankAccount.Update(customerID: customerID, id: sourceID, parameters: param).send({ (result) in
                                     switch result {
                                     case .success(let response):
                                         XCTAssertNotNil(response)
                                         XCTAssertEqual(response.id, sourceID)
-                                        XCTAssertEqual(response.accountHolderName, name)
+                                        XCTAssertEqual(response.accountHolderName, changeName)
                                         BankAccount.Delete(customerID: customerID, id: sourceID).send({ (result) in
                                             switch result {
                                             case .success(let response):
