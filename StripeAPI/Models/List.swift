@@ -24,61 +24,6 @@ public struct List<T: StripeModel>: Codable {
     public let object: String
     public let data: [T]
     public let hasMore: Bool
-    public let totalCount: Int
+    public let totalCount: Int?
     public let url: String
 }
-
-extension List where T: ListProtocol {
-
-    public struct Get: StripeAPI {
-
-        public var method: HTTPMethod { return .get }
-
-        public var path: String { return Element.path }
-
-        public typealias Response = List<Element>
-
-        public let limit: Int = 30
-    }
-
-    public struct Next: StripeAPI {
-
-        public var method: HTTPMethod { return .get }
-
-        public var path: String { return Element.path }
-
-        public typealias Response = List<Element>
-
-        public let limit: Int = 30
-
-        public let endingBefore: String
-    }
-}
-
-//extension List where T: ListProtocol, T == Balance {
-//
-//    public struct Get: StripeAPI {
-//
-//        public var method: HTTPMethod { return .get }
-//
-//        public var path: String { return "\(Element.path)/history" }
-//
-//        public typealias Response = List<Element>
-//
-//        public let limit: Int = 30
-//    }
-//
-//    public struct Next: StripeAPI {
-//
-//        public var method: HTTPMethod { return .get }
-//
-//        public var path: String { return "\(Element.path)/history" }
-//
-//        public typealias Response = List<Element>
-//
-//        public let limit: Int = 30
-//
-//        public let endingBefore: String
-//    }
-//}
-

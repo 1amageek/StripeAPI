@@ -9,9 +9,9 @@
 import Foundation
 import APIKit
 
-public struct Product: StripeModel {
+public struct Product: StripeModel, ListProtocol {
 
-    public static var path: String { return "/products"}
+    public static var path: String { return "/products" }
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -185,6 +185,48 @@ extension Product {
         public struct Response: Codable {
             public let deleted: Bool
             public let id: String
+        }
+    }
+
+    // MARK: - List
+
+    public struct All: StripeParametersAPI {
+
+        public typealias Response = List<Product>
+
+        public var method: HTTPMethod { return .get }
+
+        public var path: String { return "\(Product.path)" }
+
+        public var _parameters: Any?
+
+        public init() {
+            self._parameters = Parameters()
+        }
+
+        public init(parameters: Parameters) {
+            self._parameters = parameters
+        }
+
+        public struct Parameters: Codable {
+
+            private enum CodingKeys: String, CodingKey {
+                case active
+                case endingBefore = "ending_before"
+                case ids
+                case limit
+                case shippable
+                case startingAfter = "starting_after"
+                case url
+            }
+
+            public var active: Bool? = nil
+            public var endingBefore: String? = nil
+            public var ids: [String]? = nil
+            public var limit: Int? = nil
+            public var shippable: Bool? = nil
+            public var startingAfter: String? = nil
+            public var url: String? = nil
         }
     }
 }

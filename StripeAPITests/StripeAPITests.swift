@@ -555,6 +555,19 @@ class StripeAPITests: XCTestCase {
         self.wait(for: [expectation], timeout: 8)
     }
 
+    func testListProject() {
+        let expectation: XCTestExpectation = XCTestExpectation(description: "List<Project>")
+        Product.All().send { (result) in
+            switch result {
+            case .success(let response):
+                XCTAssertNotNil(response)
+                expectation.fulfill()
+            case .failure(let error): print(error)
+            }
+        }
+        self.wait(for: [expectation], timeout: 5)
+    }
+
     func testTestModel() {
         let expectation: XCTestExpectation = XCTestExpectation(description: "TestModel")
         let orderItem = Order.Create.Parameters.OrderItem(type: .sku, parent: "sku_Bc8rj7W8lwdhf7")
