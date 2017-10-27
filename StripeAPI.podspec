@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "StripeAPI"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "Stripe API"
   s.description  = <<-DESC
 With Stripe API you can use Stripe type-safely. https://stripe.com/docs/api
