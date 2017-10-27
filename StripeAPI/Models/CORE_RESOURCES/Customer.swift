@@ -11,7 +11,7 @@ import APIKit
 
 public struct Customer: StripeModel, ListProtocol {
 
-    public static var path: String { return "/customers"}
+    public static var path: String { return "/customers" }
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -71,7 +71,7 @@ extension Customer {
         }
 
         public struct Parameters: Codable {
-            
+
             private enum CodingKeys: String, CodingKey {
                 case accountBalance
                 case businessVatID
@@ -107,6 +107,10 @@ extension Customer {
         public var path: String { return "\(Customer.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 
     // MARK: - Update
@@ -163,6 +167,10 @@ extension Customer {
         public var path: String { return "\(Customer.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
 
         public struct Response: Codable {
             public let deleted: Bool

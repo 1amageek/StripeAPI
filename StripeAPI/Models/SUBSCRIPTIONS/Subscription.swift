@@ -13,4 +13,8 @@ public struct Subscription: StripeModel, ListProtocol {
     public static var path: String { return "subscriptions" }
 
     let id: String
+
+    public init(id: String) {
+        self.id = id
+    }
 }

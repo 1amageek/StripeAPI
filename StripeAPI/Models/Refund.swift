@@ -10,7 +10,7 @@ import Foundation
 import APIKit
 
 public struct Refund: StripeModel, ListProtocol {
-    
+
     public static var path: String { return "/refunds" }
 
     private enum CodingKeys: String, CodingKey {
@@ -110,6 +110,10 @@ extension Refund {
         public var path: String { return "\(Refund.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 
     // MARK: - Update

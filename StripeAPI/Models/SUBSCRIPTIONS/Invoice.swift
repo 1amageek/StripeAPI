@@ -214,6 +214,10 @@ extension Invoice {
         public var path: String { return "\(Invoice.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 
     // MARK: - Update

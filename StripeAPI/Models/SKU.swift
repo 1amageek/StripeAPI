@@ -11,7 +11,7 @@ import APIKit
 
 public struct SKU: StripeModel, ListProtocol {
 
-    public static var path: String { return "/skus"}
+    public static var path: String { return "/skus" }
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -158,6 +158,10 @@ extension SKU {
         public var path: String { return "\(SKU.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 
     // MARK: - Update
@@ -214,6 +218,10 @@ extension SKU {
         public var path: String { return "\(SKU.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
 
         public struct Response: Codable {
             public let deleted: Bool

@@ -11,7 +11,7 @@ import APIKit
 
 public struct Return: StripeModel, ListProtocol {
 
-    public static var path: String { return "/returns"}
+    public static var path: String { return "/returns" }
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -49,5 +49,9 @@ extension Return {
         public var path: String { return "\(Return.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 }
