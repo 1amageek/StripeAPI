@@ -119,6 +119,10 @@ extension Source {
         public var path: String { return "\(Source.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 
     // MARK: - Update

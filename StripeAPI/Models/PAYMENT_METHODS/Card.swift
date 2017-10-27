@@ -11,7 +11,7 @@ import APIKit
 
 public struct Card: StripeModel {
 
-    public static var path: String { return "/sources"}
+    public static var path: String { return "/sources" }
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -168,6 +168,11 @@ extension Card {
         public let customerID: String
 
         public let id: String
+
+        public init(customerID: String, id: String) {
+            self.customerID = customerID
+            self.id = id
+        }
     }
 
     // MARK: - Update
@@ -231,6 +236,11 @@ extension Card {
         public let customerID: String
 
         public let id: String
+
+        public init(customerID: String, id: String) {
+            self.customerID = customerID
+            self.id = id
+        }
 
         public struct Response: Codable {
             public let deleted: Bool

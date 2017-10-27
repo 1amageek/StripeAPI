@@ -11,7 +11,7 @@ import APIKit
 
 public struct Balance: StripeModel, ListProtocol {
 
-    public static var path: String { return "/balance"}
+    public static var path: String { return "/balance" }
 
     private enum CodingKeys: String, CodingKey {
         case object
@@ -56,12 +56,14 @@ extension Balance {
         public var method: HTTPMethod { return .get }
 
         public var path: String { return Balance.path }
+
+        public init() { }
     }
 }
 
 public struct BalanceTransaction: StripeModel {
 
-    public static var path: String { return "/balance"}
+    public static var path: String { return "/balance" }
 
     private enum CodingKeys: String, CodingKey {
 
@@ -161,5 +163,9 @@ extension BalanceTransaction {
         public var path: String { return "\(Balance.path)/history/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 }

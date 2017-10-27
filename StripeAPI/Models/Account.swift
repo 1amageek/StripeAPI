@@ -12,7 +12,7 @@ import Stripe
 
 public struct Account: StripeModel, ListProtocol {
 
-    public static var path: String { return "/accounts"}
+    public static var path: String { return "/accounts" }
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -297,6 +297,10 @@ extension Account {
         public var path: String { return "\(Account.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 
     // MARK: - Update
@@ -371,6 +375,10 @@ extension Account {
         public var path: String { return "\(Account.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
 
         public struct Response: Codable {
             public let deleted: Bool

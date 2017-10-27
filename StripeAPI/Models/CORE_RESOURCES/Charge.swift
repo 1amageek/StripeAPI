@@ -209,6 +209,10 @@ extension Charge {
         public var path: String { return "\(Charge.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 
     // MARK: - Update

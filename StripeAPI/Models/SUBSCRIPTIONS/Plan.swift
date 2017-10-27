@@ -114,6 +114,10 @@ extension Plan {
         public var path: String { return "\(Plan.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
     }
 
     // MARK: - Update
@@ -158,6 +162,10 @@ extension Plan {
         public var path: String { return "\(Plan.path)/\(id)" }
 
         public let id: String
+
+        public init(id: String) {
+            self.id = id
+        }
 
         public struct Response: Codable {
             public let deleted: Bool
