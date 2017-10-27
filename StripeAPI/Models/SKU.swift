@@ -151,7 +151,7 @@ extension SKU {
 
     public struct Retrieve: StripeAPI {
 
-        public typealias Response = Customer
+        public typealias Response = SKU
 
         public var method: HTTPMethod { return .get }
 
