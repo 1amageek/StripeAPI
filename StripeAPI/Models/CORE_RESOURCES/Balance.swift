@@ -23,7 +23,7 @@ public struct Balance: StripeModel, ListProtocol {
 
     public let object: String
     public let available: [Transaction]
-    public let connectReserved: [ConnectReserved]
+    public let connectReserved: [ConnectReserved]?
     public let livemode: Bool
     public let pending: [Transaction]
 
